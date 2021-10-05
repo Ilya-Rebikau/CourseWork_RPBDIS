@@ -20,9 +20,9 @@ namespace VehiclesAccounting.Infrastructure.Data
             return _vehiclesContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public Task<List<T>> ListAsync<T>() where T : class, IEntity
+        public async Task<IQueryable<T>> GetAllAsync<T>() where T : class, IEntity
         {
-            return _vehiclesContext.Set<T>().ToListAsync();
+            return await Task.Run(() => _vehiclesContext.Set<T>());
         }
 
         public async Task<T> AddAsync<T>(T entity) where T : class, IEntity

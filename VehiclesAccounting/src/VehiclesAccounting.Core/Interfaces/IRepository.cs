@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace VehiclesAccounting.Core.Interfaces
@@ -16,11 +17,11 @@ namespace VehiclesAccounting.Core.Interfaces
         /// <returns>Entity</returns>
         Task<T> GetByIdAsync<T>(int id) where T : class, IEntity;
         /// <summary>
-        /// Async method to get list of entities
+        /// Async method to get all entites
         /// </summary>
         /// <typeparam name="T">Type of entity</typeparam>
-        /// <returns>List of entites</returns>
-        Task<List<T>> ListAsync<T>() where T : class, IEntity;
+        /// <returns>All entites</returns>
+        Task<IQueryable<T>> GetAllAsync<T>() where T : class, IEntity;
         /// <summary>
         /// Async method to add new entity to database
         /// </summary>
