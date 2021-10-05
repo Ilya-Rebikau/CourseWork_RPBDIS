@@ -11,6 +11,11 @@ namespace VehiclesAccounting.Infrastructure.Data
     /// </summary>
     public class VehiclesContext : DbContext
     {
+        /// <summary>
+        /// Counstructor of class VehiclesContext
+        /// Creating database if it not exists
+        /// </summary>
+        /// <param name="options">Options for context</param>
         public VehiclesContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();

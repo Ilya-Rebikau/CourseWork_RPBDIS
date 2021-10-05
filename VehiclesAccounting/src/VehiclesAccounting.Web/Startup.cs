@@ -13,15 +13,27 @@ using VehiclesAccounting.Infrastructure.Data;
 
 namespace VehiclesAccounting.Web
 {
+    /// <summary>
+    /// Entry point to ASP app
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Constructor of class startup
+        /// </summary>
+        /// <param name="configuration">Configuration</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
+        /// <summary>
+        /// Gets configuration
+        /// </summary>
         public IConfiguration Configuration { get; }
-
+        /// <summary>
+        /// Method to registrate services
+        /// </summary>
+        /// <param name="services">Services</param>
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
@@ -29,7 +41,11 @@ namespace VehiclesAccounting.Web
                 options.UseSqlServer(connection));
             services.AddControllersWithViews();
         }
-
+        /// <summary>
+        /// Method to set how app will process the request
+        /// </summary>
+        /// <param name="app">IApplicationBuilder object</param>
+        /// <param name="env">IWebHostEnvironment object</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

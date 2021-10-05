@@ -9,16 +9,21 @@ using VehiclesAccounting.Infrastructure.Data;
 
 namespace VehiclesAccounting.Web
 {
+    /// <summary>
+    /// Main class
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Entry point to the program
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
                 try
                 {
                     var context = services.GetRequiredService<VehiclesContext>();
@@ -33,7 +38,11 @@ namespace VehiclesAccounting.Web
             }
             host.Run();
         }
-
+        /// <summary>
+        /// Method to create IHost object to start program
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns>IHostBuilder object</returns>
         public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .UseServiceProviderFactory(new AutofacServiceProviderFactory())

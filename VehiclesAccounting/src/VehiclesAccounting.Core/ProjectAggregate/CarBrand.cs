@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
 {
     /// <summary>
     /// Class of car brand
     /// </summary>
-    public class CarBrand
+    public class CarBrand : IEntity
     {
         /// <summary>
         /// Constructor of class CarBrand
@@ -31,9 +32,6 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Category = category;
             Description = description;
         }
-        /// <summary>
-        /// Gets or sets ID of car brand
-        /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets name of car brand

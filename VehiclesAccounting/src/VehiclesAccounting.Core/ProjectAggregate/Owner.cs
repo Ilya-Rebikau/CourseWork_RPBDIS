@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
 {
     /// <summary>
     /// Class of car owner
     /// </summary>
-    public class Owner
+    public class Owner : IEntity
     {
         /// <summary>
         /// Constructor of class owner
@@ -35,9 +36,6 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Categories = categories;
             ExtraInformation = extraInformation;
         }
-        /// <summary>
-        /// Gets or sets ID
-        /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets  name

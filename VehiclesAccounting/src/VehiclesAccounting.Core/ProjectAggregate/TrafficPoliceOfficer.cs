@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
 {
     /// <summary>
     /// Class of traffic police officer
     /// </summary>
-    public class TrafficPoliceOfficer
+    public class TrafficPoliceOfficer : IEntity
     {
         /// <summary>
         /// Constructor of class TrafficPoliceOfficer
@@ -24,9 +25,6 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Birthday = birthday;
             Post = post;
         }
-        /// <summary>
-        /// Gets or sets Id
-        /// </summary>
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets name
