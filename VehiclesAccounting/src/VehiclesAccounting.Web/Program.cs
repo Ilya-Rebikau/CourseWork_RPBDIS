@@ -20,19 +20,19 @@ namespace VehiclesAccounting.Web
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
-            using (var scope = host.Services.CreateScope())
+            IHost host = CreateHostBuilder(args).Build();
+            using (IServiceScope scope = host.Services.CreateScope())
             {
-                var services = scope.ServiceProvider;
+                IServiceProvider services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<VehiclesContext>();
+                    VehiclesContext context = services.GetRequiredService<VehiclesContext>();
                     context.Database.Migrate();
                     context.Database.EnsureCreated();
                 }
                 catch (Exception ex)
                 {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    ILogger<Program> logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
@@ -43,19 +43,20 @@ namespace VehiclesAccounting.Web
         /// </summary>
         /// <param name="args"></param>
         /// <returns>IHostBuilder object</returns>
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-        .ConfigureWebHostDefaults(webBuilder =>
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            webBuilder
-                .UseStartup<Startup>()
-                .ConfigureLogging(logging =>
-            {
-                logging.ClearProviders();
-                logging.AddConsole();
-            });
-        });
-
+            return Host.CreateDefaultBuilder(args)
+.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+.ConfigureWebHostDefaults(webBuilder =>
+{
+    webBuilder
+    .UseStartup<Startup>()
+    .ConfigureLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.AddConsole();
+    });
+});
+        }
     }
 }

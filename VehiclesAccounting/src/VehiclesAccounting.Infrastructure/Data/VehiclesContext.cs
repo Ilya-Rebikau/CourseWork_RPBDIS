@@ -1,7 +1,4 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using Microsoft.EntityFrameworkCore;
 using VehiclesAccounting.Core.ProjectAggregate;
 
 namespace VehiclesAccounting.Infrastructure.Data

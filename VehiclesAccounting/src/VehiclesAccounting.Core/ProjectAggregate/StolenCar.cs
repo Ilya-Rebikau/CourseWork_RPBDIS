@@ -32,9 +32,9 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <param name="carId">ID of car</param>
         public StolenCar(long registrationNumber, byte[] photo, long bodyNumber, long engineNumber,
                    long techPassportNumber, DateTime dateCreating, DateTime dateRegistration, DateTime dateInspection,
-                   string color, string description, DateTime theftDate, DateTime statementDate, string insuranceType, 
-                   string circumstances, bool markAboutFinding, int? inspectorId, int? carId) 
-            : base(registrationNumber, photo, bodyNumber, engineNumber, techPassportNumber, dateCreating, dateRegistration, 
+                   string color, string description, DateTime theftDate, DateTime statementDate, string insuranceType,
+                   string circumstances, bool markAboutFinding, int? inspectorId, int? carId)
+            : base(registrationNumber, photo, bodyNumber, engineNumber, techPassportNumber, dateCreating, dateRegistration,
                   dateInspection, color, description)
         {
             TheftDate = theftDate;
