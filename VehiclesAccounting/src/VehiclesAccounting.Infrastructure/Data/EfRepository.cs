@@ -7,38 +7,40 @@ namespace VehiclesAccounting.Infrastructure.Data
 {
     public class EfRepository : IRepository
     {
-        private readonly VehiclesContext _vehiclesContext;
-        public EfRepository(VehiclesContext vehiclesContext)
+        private readonly DbContext _dbContext;
+        public EfRepository(DbContext dbContext)
         {
-            _vehiclesContext = vehiclesContext;
+            _dbContext = dbContext;
         }
-
-        public Task<T> GetByIdAsync<T>(int id) where T : class, IEntity
+        public async Task<T> GetByIdAsync<T>(int id) where T : class, IEntity
         {
-            return _vehiclesContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
+            return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
         }
-
         public async Task<IQueryable<T>> GetAllAsync<T>() where T : class, IEntity
         {
-            return await Task.Run(() => _vehiclesContext.Set<T>());
+            return await new Task<IQueryable<T>>(() => _dbContext.Set<T>());
         }
-
         public async Task<T> AddAsync<T>(T entity) where T : class, IEntity
         {
-            await _vehiclesContext.Set<T>().AddAsync(entity);
-            await _vehiclesContext.SaveChangesAsync();
+            await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
             return entity;
         }
-        public Task UpdateAsync<T>(T entity) where T : class, IEntity
+        public async Task<T> UpdateAsync<T>(T entity) where T : class, IEntity
         {
-            _vehiclesContext.Entry(entity).State = EntityState.Modified;
-            return _vehiclesContext.SaveChangesAsync();
+            return await new Task<T>(() =>
+            {
+                Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<T> temp = _dbContext.Entry(entity);
+                temp.State = EntityState.Modified;
+                _dbContext.SaveChangesAsync();
+                return temp.Entity;
+            });
         }
-
-        public Task DeleteAsync<T>(T entity) where T : class, IEntity
+        public async Task<T> DeleteAsync<T>(T entity) where T : class, IEntity
         {
-            _vehiclesContext.Set<T>().Remove(entity);
-            return _vehiclesContext.SaveChangesAsync();
+            T oldEntity = await new Task<T>(() => _dbContext.Set<T>().Remove(entity).Entity);
+            await _dbContext.SaveChangesAsync();
+            return oldEntity;
         }
     }
 }

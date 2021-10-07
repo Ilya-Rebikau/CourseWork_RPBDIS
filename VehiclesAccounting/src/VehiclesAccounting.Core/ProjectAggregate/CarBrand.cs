@@ -32,6 +32,11 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Category = category;
             Description = description;
         }
+        /// <summary>
+        /// Constructor of class CarBrand
+        /// </summary>
+        public CarBrand()
+        { }
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets name of car brand

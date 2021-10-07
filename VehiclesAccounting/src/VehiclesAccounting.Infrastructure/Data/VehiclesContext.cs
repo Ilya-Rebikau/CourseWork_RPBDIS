@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VehiclesAccounting.Core.ProjectAggregate;
+using VehiclesAccounting.Infrastructure.Data.Config;
 
 namespace VehiclesAccounting.Infrastructure.Data
 {
@@ -8,6 +9,11 @@ namespace VehiclesAccounting.Infrastructure.Data
     /// </summary>
     public class VehiclesContext : DbContext
     {
+        /// <summary>
+        /// Constructor of class VehiclesContext
+        /// </summary>
+        public VehiclesContext()
+        { }
         /// <summary>
         /// Counstructor of class VehiclesContext
         /// Creating database if it not exists
@@ -37,5 +43,13 @@ namespace VehiclesAccounting.Infrastructure.Data
         /// Gets or sets DbSet of stolen cars
         /// </summary>
         public DbSet<StolenCar> StolenCars { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CarConfiguration());
+            modelBuilder.ApplyConfiguration(new CarBrandConfiguration());
+            modelBuilder.ApplyConfiguration(new OwnerConfiguration());
+            modelBuilder.ApplyConfiguration(new StolenCarConfiguration());
+            modelBuilder.ApplyConfiguration(new OfficerConfiguration());
+        }
     }
 }

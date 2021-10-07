@@ -36,6 +36,12 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Categories = categories;
             ExtraInformation = extraInformation;
         }
+        /// <summary>
+        /// Constructor of class Owner
+        /// </summary>
+        public Owner()
+        {
+        }
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets  name

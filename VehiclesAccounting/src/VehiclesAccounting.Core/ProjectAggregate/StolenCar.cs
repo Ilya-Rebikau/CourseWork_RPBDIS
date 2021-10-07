@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
@@ -7,7 +6,6 @@ namespace VehiclesAccounting.Core.ProjectAggregate
     /// <summary>
     /// Class of stolen cars
     /// </summary>
-    [Table("StolenCars")]
     public class StolenCar : Car, IEntity
     {
         /// <summary>
@@ -45,6 +43,11 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             InspectorId = inspectorId;
             CarId = carId;
         }
+        /// <summary>
+        /// Constructor of class StolenCar
+        /// </summary>
+        public StolenCar()
+        { }
         /// <summary>
         /// Gets or sets date when statement was written
         /// </summary>

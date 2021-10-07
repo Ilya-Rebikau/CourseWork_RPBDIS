@@ -33,7 +33,7 @@ namespace VehiclesAccounting.Web
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<VehiclesContext>(options =>
-                options.UseSqlServer(connection));
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Web")));
             services.AddControllersWithViews();
         }
         /// <summary>

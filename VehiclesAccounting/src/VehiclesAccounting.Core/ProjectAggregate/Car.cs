@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
@@ -8,7 +7,6 @@ namespace VehiclesAccounting.Core.ProjectAggregate
     /// <summary>
     /// Class of car
     /// </summary>
-    [Table("Cars")]
     public class Car : IEntity
     {
         /// <summary>
@@ -39,6 +37,11 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Color = color;
             Description = description;
         }
+        /// <summary>
+        /// Constructor of class car
+        /// </summary>
+        public Car()
+        { }
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets registration number of car

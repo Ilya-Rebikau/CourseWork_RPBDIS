@@ -34,13 +34,13 @@ namespace VehiclesAccounting.Core.Interfaces
         /// <typeparam name="T">Type of entity</typeparam>
         /// <param name="entity">Old entity</param>
         /// <returns>Task</returns>
-        Task UpdateAsync<T>(T entity) where T : class, IEntity;
+        Task<T> UpdateAsync<T>(T entity) where T : class, IEntity;
         /// <summary>
         /// Async method to delete entity from database
         /// </summary>
         /// <typeparam name="T">Type of entity</typeparam>
         /// <param name="entity">Deleting entity</param>
-        /// <returns>Task</returns>
-        Task DeleteAsync<T>(T entity) where T : class, IEntity;
+        /// <returns>Deleted entity</returns>
+        Task<T> DeleteAsync<T>(T entity) where T : class, IEntity;
     }
 }

@@ -25,6 +25,11 @@ namespace VehiclesAccounting.Core.ProjectAggregate
             Birthday = birthday;
             Post = post;
         }
+        /// <summary>
+        /// Constructor of class TrafficPoliceOfficer
+        /// </summary>
+        public TrafficPoliceOfficer()
+        { }
         public int Id { get; set; }
         /// <summary>
         /// Gets or sets name

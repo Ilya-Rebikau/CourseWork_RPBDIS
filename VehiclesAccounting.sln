@@ -7,12 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesAccounting.Core", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesAccounting.Infrastructure", "VehiclesAccounting\src\VehiclesAccounting.Infrastructure\VehiclesAccounting.Infrastructure.csproj", "{602E5FA1-DEC6-4EAD-A3A3-F56ACD60E5E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesAccounting.UnitTests", "VehiclesAccounting\tests\VehiclesAccounting.UnitTests\VehiclesAccounting.UnitTests.csproj", "{E3990246-E437-4277-98C5-118C641ED273}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesAccounting.IntegrationTests", "VehiclesAccounting\tests\VehiclesAccounting.IntegrationTests\VehiclesAccounting.IntegrationTests.csproj", "{22822774-CCDA-498D-BBE6-1D5CD9527DB3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesAccounting.FunctionalTests", "VehiclesAccounting\tests\VehiclesAccounting.FunctionalTests\VehiclesAccounting.FunctionalTests.csproj", "{EC7111CE-D1E0-4277-B011-24558AAF5547}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesAccounting.Web", "VehiclesAccounting\src\VehiclesAccounting.Web\VehiclesAccounting.Web.csproj", "{00A11538-6392-471D-A91E-07171526E1BD}"
 EndProject
 Global
@@ -29,18 +23,6 @@ Global
 		{602E5FA1-DEC6-4EAD-A3A3-F56ACD60E5E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{602E5FA1-DEC6-4EAD-A3A3-F56ACD60E5E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{602E5FA1-DEC6-4EAD-A3A3-F56ACD60E5E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3990246-E437-4277-98C5-118C641ED273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3990246-E437-4277-98C5-118C641ED273}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3990246-E437-4277-98C5-118C641ED273}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3990246-E437-4277-98C5-118C641ED273}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22822774-CCDA-498D-BBE6-1D5CD9527DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22822774-CCDA-498D-BBE6-1D5CD9527DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22822774-CCDA-498D-BBE6-1D5CD9527DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22822774-CCDA-498D-BBE6-1D5CD9527DB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC7111CE-D1E0-4277-B011-24558AAF5547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC7111CE-D1E0-4277-B011-24558AAF5547}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC7111CE-D1E0-4277-B011-24558AAF5547}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC7111CE-D1E0-4277-B011-24558AAF5547}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00A11538-6392-471D-A91E-07171526E1BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00A11538-6392-471D-A91E-07171526E1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A11538-6392-471D-A91E-07171526E1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
