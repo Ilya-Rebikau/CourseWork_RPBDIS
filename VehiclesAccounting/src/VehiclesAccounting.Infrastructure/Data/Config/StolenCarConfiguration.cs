@@ -11,7 +11,6 @@ namespace VehiclesAccounting.Infrastructure.Data.Config
     {
         public void Configure(EntityTypeBuilder<StolenCar> builder)
         {
-            builder.ToTable("StolenCars");
             builder.Property(sc => sc.Circumstances).IsRequired();
             builder.Property(sc => sc.InsuranceType).IsRequired().HasMaxLength(50);
         }

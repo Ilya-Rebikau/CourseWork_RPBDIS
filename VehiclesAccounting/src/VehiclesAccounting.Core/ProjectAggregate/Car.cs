@@ -22,8 +22,8 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <param name="dateInspection">Last car's technical inspection date</param>
         /// <param name="color">Color</param>
         /// <param name="description">Description about car</param>
-        public Car(long registrationNumber, byte[] photo, long bodyNumber, long engineNumber,
-                   long techPassportNumber, DateTime dateCreating, DateTime dateRegistration, DateTime dateInspection,
+        public Car(string registrationNumber, byte[] photo, string bodyNumber, string engineNumber,
+                   string techPassportNumber, DateTime dateCreating, DateTime dateRegistration, DateTime dateInspection,
                    string color, string description)
         {
             RegistrationNumber = registrationNumber;
@@ -46,7 +46,7 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Gets or sets registration number of car
         /// </summary>
-        public long RegistrationNumber { get; set; }
+        public string RegistrationNumber { get; set; }
         /// <summary>
         /// Gets or sets photo of car
         /// </summary>
@@ -54,15 +54,15 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Gets or sets number of car's body
         /// </summary>
-        public long BodyNumber { get; set; }
+        public string BodyNumber { get; set; }
         /// <summary>
         /// Gets or sets engine's number
         /// </summary>
-        public long EngineNumber { get; set; }
+        public string EngineNumber { get; set; }
         /// <summary>
         /// Gets or sets technical passport's number
         /// </summary>
-        public long TechPassportNumber { get; set; }
+        public string TechPassportNumber { get; set; }
         /// <summary>
         /// Gets or sets car's creating date
         /// </summary>

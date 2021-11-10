@@ -1,3 +1,5 @@
+using System;
+
 namespace VehiclesAccounting.Web.Models
 {
     public class ErrorViewModel

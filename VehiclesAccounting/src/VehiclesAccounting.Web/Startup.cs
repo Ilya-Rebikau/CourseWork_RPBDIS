@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +33,7 @@ namespace VehiclesAccounting.Web
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<VehiclesContext>(options =>
-                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Web")));
+                options.UseSqlServer(connection, b=> b.MigrationsAssembly("VehiclesAccounting.Infrastructure")));
             services.AddControllersWithViews();
         }
         /// <summary>

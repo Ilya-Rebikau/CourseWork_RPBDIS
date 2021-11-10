@@ -1,34 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
 using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Infrastructure.Data
 {
-    public class EfRepository : IRepository
+    public class EfRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DbContext _dbContext;
         public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        public async Task<T> GetByIdAsync<T>(int id) where T : class, IEntity
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
         }
-        public async Task<IQueryable<T>> GetAllAsync<T>() where T : class, IEntity
+        public async Task<IQueryable<T>> GetAllAsync()
         {
-            return await new Task<IQueryable<T>>(() => _dbContext.Set<T>());
+            return await Task.Run(() => _dbContext.Set<T>());
         }
-        public async Task<T> AddAsync<T>(T entity) where T : class, IEntity
+        public async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
             return entity;
         }
-        public async Task<T> UpdateAsync<T>(T entity) where T : class, IEntity
+        public async Task<T> UpdateAsync(T entity)
         {
-            return await new Task<T>(() =>
+            return await Task.Run(() =>
             {
                 Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<T> temp = _dbContext.Entry(entity);
                 temp.State = EntityState.Modified;
@@ -36,9 +34,9 @@ namespace VehiclesAccounting.Infrastructure.Data
                 return temp.Entity;
             });
         }
-        public async Task<T> DeleteAsync<T>(T entity) where T : class, IEntity
+        public async Task<T> DeleteAsync(T entity)
         {
-            T oldEntity = await new Task<T>(() => _dbContext.Set<T>().Remove(entity).Entity);
+            T oldEntity = await Task.Run(() => _dbContext.Set<T>().Remove(entity).Entity);
             await _dbContext.SaveChangesAsync();
             return oldEntity;
         }
