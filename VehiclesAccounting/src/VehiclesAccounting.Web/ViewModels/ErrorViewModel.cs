@@ -1,6 +1,6 @@
 using System;
 
-namespace VehiclesAccounting.Web.Models
+namespace VehiclesAccounting.Web.ViewModels
 {
     public class ErrorViewModel
     {

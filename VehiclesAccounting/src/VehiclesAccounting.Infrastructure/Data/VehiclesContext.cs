@@ -14,7 +14,7 @@ namespace VehiclesAccounting.Infrastructure.Data
         /// Creating database if it not exists
         /// </summary>
         /// <param name="options">Options for context</param>
-        public VehiclesContext(DbContextOptions options) : base(options)
+        public VehiclesContext(DbContextOptions<VehiclesContext> options) : base(options)
         {
         }
         /// <summary>

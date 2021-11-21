@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VehiclesAccounting.Core.ProjectAggregate;
+using VehiclesAccounting.Data;
 using VehiclesAccounting.Infrastructure.Data;
 
 namespace VehiclesAccounting.Web
@@ -33,8 +36,12 @@ namespace VehiclesAccounting.Web
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<VehiclesContext>(options =>
-                options.UseSqlServer(connection, b=> b.MigrationsAssembly("VehiclesAccounting.Infrastructure")));
+                options.UseSqlServer(connection, b=> b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
+            services.AddDbContext<IdentityContext>(options =>
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
             services.AddControllersWithViews();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityContext>();
         }
         /// <summary>
         /// Method to set how app will process the request
@@ -57,6 +64,7 @@ namespace VehiclesAccounting.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();  
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
