@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using VehiclesAccounting.Core.Interfaces;
+﻿using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
 {

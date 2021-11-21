@@ -1,5 +1,4 @@
-﻿using System;
-using VehiclesAccounting.Core.Interfaces;
+﻿using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Core.ProjectAggregate
 {

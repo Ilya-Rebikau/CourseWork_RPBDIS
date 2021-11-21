@@ -15,7 +15,7 @@ namespace VehiclesAccounting.Core.Services
         }
         public async Task<IEnumerable<T>> ReadAllAsync()
         {
-            var results = await _repository.GetAllAsync();
+            IQueryable<T>? results = await _repository.GetAllAsync();
             return await Task.Run(() => results.AsEnumerable());
         }
         public async Task<T> UpdateAsync(T entity)

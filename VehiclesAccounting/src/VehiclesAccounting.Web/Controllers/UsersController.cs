@@ -18,9 +18,15 @@ namespace VehiclesAccounting.Web.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index() => View(_userManager.Users.ToList());
+        public IActionResult Index()
+        {
+            return View(_userManager.Users.ToList());
+        }
 
-        public IActionResult Create() => View();
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
@@ -28,14 +34,14 @@ namespace VehiclesAccounting.Web.Controllers
             if (ModelState.IsValid)
             {
                 User user = new() { UserName = model.UserName };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    foreach (var error in result.Errors)
+                    foreach (IdentityError error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
@@ -64,14 +70,14 @@ namespace VehiclesAccounting.Web.Controllers
                 if (user != null)
                 {
                     user.UserName = model.UserName;
-                    var result = await _userManager.UpdateAsync(user);
+                    IdentityResult result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index");
                     }
                     else
                     {
-                        foreach (var error in result.Errors)
+                        foreach (IdentityError error in result.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error.Description);
                         }
@@ -110,8 +116,8 @@ namespace VehiclesAccounting.Web.Controllers
                 User user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
-                    var _passwordValidator = HttpContext.RequestServices.GetService(typeof(IPasswordValidator<User>)) as IPasswordValidator<User>;
-                    var _passwordHasher = HttpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
+                    IPasswordValidator<User> _passwordValidator = HttpContext.RequestServices.GetService(typeof(IPasswordValidator<User>)) as IPasswordValidator<User>;
+                    IPasswordHasher<User> _passwordHasher = HttpContext.RequestServices.GetService(typeof(IPasswordHasher<User>)) as IPasswordHasher<User>;
                     IdentityResult result = await _passwordValidator.ValidateAsync(_userManager, user, model.NewPassword);
                     if (result.Succeeded)
                     {
@@ -121,7 +127,7 @@ namespace VehiclesAccounting.Web.Controllers
                     }
                     else
                     {
-                        foreach (var error in result.Errors)
+                        foreach (IdentityError error in result.Errors)
                         {
                             ModelState.AddModelError(string.Empty, error.Description);
                         }
@@ -139,8 +145,8 @@ namespace VehiclesAccounting.Web.Controllers
             User user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                var allRoles = _roleManager.Roles.ToList();
+                IList<string> userRoles = await _userManager.GetRolesAsync(user);
+                List<IdentityRole> allRoles = _roleManager.Roles.ToList();
                 ChangeRoleViewModel model = new()
                 {
                     UserId = user.Id,
@@ -158,10 +164,10 @@ namespace VehiclesAccounting.Web.Controllers
             User user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
+                IList<string> userRoles = await _userManager.GetRolesAsync(user);
                 //var allRoles = _roleManager.Roles.ToList();
-                var addedRoles = roles.Except(userRoles);
-                var removedRoles = userRoles.Except(roles);
+                IEnumerable<string> addedRoles = roles.Except(userRoles);
+                IEnumerable<string> removedRoles = userRoles.Except(roles);
                 await _userManager.AddToRolesAsync(user, addedRoles);
                 await _userManager.RemoveFromRolesAsync(user, removedRoles);
                 return RedirectToAction("Index");

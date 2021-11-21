@@ -36,7 +36,7 @@ namespace VehiclesAccounting.Web
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<VehiclesContext>(options =>
-                options.UseSqlServer(connection, b=> b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
             services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
             services.AddControllersWithViews();
@@ -64,7 +64,7 @@ namespace VehiclesAccounting.Web
 
             app.UseRouting();
 
-            app.UseAuthentication();  
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

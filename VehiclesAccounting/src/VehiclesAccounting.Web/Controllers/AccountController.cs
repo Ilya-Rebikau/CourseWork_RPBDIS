@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Web.ViewModels.Account;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace VehiclesAccounting.Web.Controllers
 {
@@ -26,7 +27,7 @@ namespace VehiclesAccounting.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+                SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))

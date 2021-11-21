@@ -12,9 +12,16 @@ namespace VehiclesAccounting.Web.Controllers
         {
             _roleManager = roleManager;
         }
-        public IActionResult Index() => View(_roleManager.Roles.ToList());
+        public IActionResult Index()
+        {
+            return View(_roleManager.Roles.ToList());
+        }
 
-        public IActionResult Create() => View();
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -27,7 +34,7 @@ namespace VehiclesAccounting.Web.Controllers
                 }
                 else
                 {
-                    foreach (var error in result.Errors)
+                    foreach (IdentityError error in result.Errors)
                     {
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
