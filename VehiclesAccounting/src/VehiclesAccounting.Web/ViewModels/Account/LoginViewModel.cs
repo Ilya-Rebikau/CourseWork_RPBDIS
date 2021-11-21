@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace VehiclesAccounting.Web.ViewModels
+namespace VehiclesAccounting.Web.ViewModels.Account
 {
     public class LoginViewModel
     {
