@@ -15,7 +15,7 @@ namespace VehiclesAccounting.Infrastructure.Data.Config
             builder.Property(o => o.Surname).IsRequired().HasMaxLength(50);
             builder.Property(o => o.Patronymic).IsRequired().HasMaxLength(50);
             builder.Property(o => o.PassportInfo).IsRequired().HasMaxLength(500);
-            builder.Property(o => o.Categories).IsRequired().HasMaxLength(20);
+            builder.Property(o => o.Categories).IsRequired().HasMaxLength(50);
             builder.Property(o => o.ExtraInformation).IsRequired();
         }
     }

@@ -87,13 +87,13 @@ namespace VehiclesAccounting.Infrastructure.Data
                 }
                 string GenerateLicenseNumber()
                 {
-                    return rand.Next(0, 10) + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)] + " "
-                        + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10);
+                    return rand.Next(0, 10).ToString() + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)] + " "
+                        + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString();
                 }
                 string GeneratePassportInfo()
                 {
-                    return alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)] + rand.Next(0, 10) 
-                        + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10);
+                    return alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)] + rand.Next(0, 10).ToString() 
+                        + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString();
                 }
                 int ownersNumber = 500;
                 for (int id = 1; id <= ownersNumber / 2; id++)
@@ -162,7 +162,7 @@ namespace VehiclesAccounting.Infrastructure.Data
                 {
                     string[] letters = { "A", "B", "E", "I", "K", "M", "H", "O", "P", "C", "T", "X" };
                     int countLetters = letters.GetLength(0);
-                    return rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10)
+                    return rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString()
                         + " " + letters[rand.Next(1, countLetters)]
                         + letters[rand.Next(1, countLetters)] + "-" + rand.Next(1, 7);
                 }
@@ -172,19 +172,19 @@ namespace VehiclesAccounting.Infrastructure.Data
                         + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
                         + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
                         + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
-                        + rand.Next(0, 10) + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
-                        + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10);
+                        + rand.Next(0, 10).ToString() + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
+                        + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString();
                 }
                 string GenerateEngineNumber()
                 {
                     return alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
-                        + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) +
-                        rand.Next(0, 10) + rand.Next(0, 10);
+                        + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() +
+                        rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString();
                 }
                 string GenerateTechPassportNumber()
                 {
                     return alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)]
-                        + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10) + rand.Next(0, 10);
+                        + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString();
                 }
 
                 for (int id = 1; id <= carsNumber; id++)
@@ -225,6 +225,7 @@ namespace VehiclesAccounting.Infrastructure.Data
                     }
                     return statement;
                 }
+                int i = 1;
                 for (int id = 1; id <= stolenCarsNumber; id++)
                 {
                     string[] insurances = { "ОСАГО", "КАСКО", "ДСАГО" };
@@ -232,7 +233,7 @@ namespace VehiclesAccounting.Infrastructure.Data
                     DateTime dateTime = RandomDate(2021, 2021);
                     db.StolenCars.Add(new StolenCar
                     {
-                        CarId = id,
+                        CarId = i,
                         StatementDate = dateTime.AddDays(1),
                         Circumstances = "Нет данных об обстоятельствах",
                         InsuranceType = insurances[rand.Next(1, countInsurances)],
@@ -240,6 +241,7 @@ namespace VehiclesAccounting.Infrastructure.Data
                         TheftDate = dateTime,
                         InspectorId = rand.Next(1, 501)
                     });
+                    i += 4;
                 }
                 db.SaveChanges();
             }

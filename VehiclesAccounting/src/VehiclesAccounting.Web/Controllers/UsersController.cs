@@ -37,6 +37,7 @@ namespace VehiclesAccounting.Web.Controllers
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "moder");
                     return RedirectToAction("Index");
                 }
                 else

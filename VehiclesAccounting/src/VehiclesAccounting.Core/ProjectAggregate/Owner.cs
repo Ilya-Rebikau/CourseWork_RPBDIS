@@ -21,7 +21,7 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <param name="categories">Driver's license categories</param>
         /// <param name="extraInformation">Extra information about car owner</param>
         public Owner(string name, string surname, string patronymic, DateTime birthday, string passportInfo,
-                     long licenseNumber, DateTime licenseStart, DateTime licenseEnd, string categories, string extraInformation)
+                     string licenseNumber, DateTime licenseStart, DateTime licenseEnd, string categories, string extraInformation)
         {
             Name = name;
             Surname = surname;

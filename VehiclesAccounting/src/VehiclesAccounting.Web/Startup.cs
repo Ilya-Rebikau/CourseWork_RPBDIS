@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Data;
 using VehiclesAccounting.Infrastructure.Data;
+using VehiclesAccounting.Web.Middlewares;
 
 namespace VehiclesAccounting.Web
 {
@@ -36,11 +37,11 @@ namespace VehiclesAccounting.Web
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<VehiclesContext>(options =>
-                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Web")));
             services.AddDbContext<IdentityContext>(options =>
-                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Web")));
             services.AddControllersWithViews();
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<IdentityContext>();
         }
         /// <summary>
@@ -66,6 +67,9 @@ namespace VehiclesAccounting.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<DbInitializerMiddleware>();
+            app.UseMiddleware<RoleInitializerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

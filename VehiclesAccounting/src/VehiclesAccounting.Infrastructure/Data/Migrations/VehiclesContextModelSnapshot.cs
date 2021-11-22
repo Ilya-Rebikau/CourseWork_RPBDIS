@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VehiclesAccounting.Infrastructure.Data;
 
-namespace VehiclesAccounting.Infrastructure.Migrations
+#nullable disable
+
+namespace VehiclesAccounting.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(VehiclesContext))]
     partial class VehiclesContextModelSnapshot : ModelSnapshot
@@ -15,21 +17,23 @@ namespace VehiclesAccounting.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("VehiclesAccounting.Core.ProjectAggregate.Car", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BodyNumber")
                         .IsRequired()
-                        .HasMaxLength(17)
-                        .HasColumnType("nvarchar(17)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("CarBrandId")
                         .HasColumnType("int");
@@ -54,25 +58,24 @@ namespace VehiclesAccounting.Infrastructure.Migrations
 
                     b.Property<string>("EngineNumber")
                         .IsRequired()
-                        .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Photo")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
-                        .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("TechPassportNumber")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("TrafficPoliceOfficerId")
                         .HasColumnType("int");
@@ -92,8 +95,9 @@ namespace VehiclesAccounting.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -138,16 +142,17 @@ namespace VehiclesAccounting.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Categories")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ExtraInformation")
                         .IsRequired()
@@ -156,8 +161,9 @@ namespace VehiclesAccounting.Infrastructure.Migrations
                     b.Property<DateTime>("LicenseEnd")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("LicenseNumber")
-                        .HasColumnType("bigint");
+                    b.Property<string>("LicenseNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LicenseStart")
                         .HasColumnType("datetime2");
@@ -191,8 +197,9 @@ namespace VehiclesAccounting.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("CarId")
                         .HasColumnType("int");
@@ -231,8 +238,9 @@ namespace VehiclesAccounting.Infrastructure.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
