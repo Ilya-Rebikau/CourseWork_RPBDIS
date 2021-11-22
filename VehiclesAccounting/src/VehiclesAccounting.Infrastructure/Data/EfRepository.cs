@@ -3,7 +3,7 @@ using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Infrastructure.Data
 {
-    public class EfRepository<T> : IRepository<T> where T : class, IEntity
+    internal class EfRepository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly DbContext _dbContext;
         public EfRepository(DbContext dbContext)

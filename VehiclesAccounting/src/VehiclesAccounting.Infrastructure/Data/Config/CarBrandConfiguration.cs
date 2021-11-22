@@ -7,7 +7,7 @@ namespace VehiclesAccounting.Infrastructure.Data.Config
     /// <summary>
     /// Configurations for class CarBrand and table CarBrands
     /// </summary>
-    public class CarBrandConfiguration : IEntityTypeConfiguration<CarBrand>
+    internal class CarBrandConfiguration : IEntityTypeConfiguration<CarBrand>
     {
         public void Configure(EntityTypeBuilder<CarBrand> builder)
         {

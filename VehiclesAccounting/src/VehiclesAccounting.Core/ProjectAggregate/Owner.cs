@@ -64,7 +64,7 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Gets or sets number of drive license
         /// </summary>
-        public long LicenseNumber { get; set; }
+        public string LicenseNumber { get; set; }
         /// <summary>
         /// Gets or sets date when owner got drive license
         /// </summary>

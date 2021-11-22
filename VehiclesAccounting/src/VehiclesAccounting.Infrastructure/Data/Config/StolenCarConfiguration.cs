@@ -7,7 +7,7 @@ namespace VehiclesAccounting.Infrastructure.Data.Config
     /// <summary>
     /// Configurations for class StolenCar and table StolenCars
     /// </summary>
-    public class StolenCarConfiguration : IEntityTypeConfiguration<StolenCar>
+    internal class StolenCarConfiguration : IEntityTypeConfiguration<StolenCar>
     {
         public void Configure(EntityTypeBuilder<StolenCar> builder)
         {

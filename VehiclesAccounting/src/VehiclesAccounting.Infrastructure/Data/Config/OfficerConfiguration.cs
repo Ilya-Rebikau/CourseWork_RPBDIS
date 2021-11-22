@@ -7,7 +7,7 @@ namespace VehiclesAccounting.Infrastructure.Data.Config
     /// <summary>
     /// Configurations for class TrafficPoliceOfficer and table TrafficPoliceOfficers
     /// </summary>
-    public class OfficerConfiguration : IEntityTypeConfiguration<TrafficPoliceOfficer>
+    internal class OfficerConfiguration : IEntityTypeConfiguration<TrafficPoliceOfficer>
     {
         public void Configure(EntityTypeBuilder<TrafficPoliceOfficer> builder)
         {

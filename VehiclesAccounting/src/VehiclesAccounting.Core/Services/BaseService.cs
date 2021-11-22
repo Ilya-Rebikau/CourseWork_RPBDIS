@@ -3,7 +3,7 @@
 namespace VehiclesAccounting.Core.Services
 {
     /// <summary>
-    /// Base interface for all others
+    /// Base realization of IServiceAsync
     /// </summary>
     /// <typeparam name="T">Entity</typeparam>
     public class BaseService<T> : IServiceAsync<T> where T : class, IEntity

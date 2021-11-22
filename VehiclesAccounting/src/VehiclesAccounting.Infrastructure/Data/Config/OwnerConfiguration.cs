@@ -7,7 +7,7 @@ namespace VehiclesAccounting.Infrastructure.Data.Config
     /// <summary>
     /// Configurations for class Owner and table Owners
     /// </summary>
-    public class OwnerConfiguration : IEntityTypeConfiguration<Owner>
+    internal class OwnerConfiguration : IEntityTypeConfiguration<Owner>
     {
         public void Configure(EntityTypeBuilder<Owner> builder)
         {
