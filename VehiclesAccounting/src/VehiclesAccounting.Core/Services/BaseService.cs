@@ -8,7 +8,7 @@ namespace VehiclesAccounting.Core.Services
     /// <typeparam name="T">Entity</typeparam>
     public class BaseService<T> : IServiceAsync<T> where T : class, IEntity
     {
-        protected readonly IRepository<T> _repository;
+        protected IRepository<T> _repository;
         public BaseService(IRepository<T> repository)
         {
             _repository = repository;
@@ -29,6 +29,16 @@ namespace VehiclesAccounting.Core.Services
         public async Task<T> AddAsync(T entity)
         {
             return await _repository.AddAsync(entity);
+        }
+
+        public async Task<T> UpdateByIdAsync(int id)
+        {
+            return await _repository.UpdateByIdAsync(id);
+        }
+
+        public async Task<T> GetByIdAsync(int id)
+        {
+            return await _repository.GetByIdAsync(id);
         }
     }
 }

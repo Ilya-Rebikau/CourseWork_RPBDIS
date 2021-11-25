@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Data;
 using VehiclesAccounting.Infrastructure.Data;
+using VehiclesAccounting.Web.Configuration;
 using VehiclesAccounting.Web.Middlewares;
 
 namespace VehiclesAccounting.Web
@@ -37,12 +38,14 @@ namespace VehiclesAccounting.Web
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<VehiclesContext>(options =>
-                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Web")));
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
             services.AddDbContext<IdentityContext>(options =>
-                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Web")));
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
             services.AddControllersWithViews();
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<IdentityContext>();
+            services.AddCoreServices();
+            services.AddMvc();
         }
         /// <summary>
         /// Method to set how app will process the request

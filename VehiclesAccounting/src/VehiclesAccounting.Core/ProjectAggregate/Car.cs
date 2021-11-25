@@ -48,7 +48,7 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Gets or sets photo of car
         /// </summary>
-        public byte[] Photo { get; set; }
+        public byte[]? Photo { get; set; }
         /// <summary>
         /// Gets or sets number of car's body
         /// </summary>
@@ -84,30 +84,30 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Gets or sets foreign key with owner ID for DB Owners
         /// </summary>
-        public int OwnerId { get; set; }
+        public int? OwnerId { get; set; }
         /// <summary>
         /// Navigation property for DB Owners
         /// </summary>
-        public Owner Owner { get; set; }
+        public Owner? Owner { get; set; }
         /// <summary>
         /// Gets or sets foreign key with traffic police officer ID for DB TrafficPoliceOfficers
         /// </summary>
-        public int TrafficPoliceOfficerId { get; set; }
+        public int? TrafficPoliceOfficerId { get; set; }
         /// <summary>
         /// Navigation property for DB TrafficPoliceOfficers
         /// </summary>
-        public TrafficPoliceOfficer TrafficPoliceOfficer { get; set; }
+        public TrafficPoliceOfficer? TrafficPoliceOfficer { get; set; }
         /// <summary>
         /// Gets or sets foreign key with car brand ID for DB CarBrands
         /// </summary>
-        public int CarBrandId { get; set; }
+        public int? CarBrandId { get; set; }
         /// <summary>
         /// Navigation property for DB CarBrands
         /// </summary>
-        public CarBrand CarBrand { get; set; }
+        public CarBrand? CarBrand { get; set; }
         /// <summary>
         /// Navigation property for DB StolenCars
         /// </summary>
-        public List<StolenCar> StolenCars { get; set; }
+        public List<StolenCar>? StolenCars { get; set; }
     }
 }

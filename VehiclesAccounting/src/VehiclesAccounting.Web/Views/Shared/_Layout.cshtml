@@ -24,6 +24,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.IsInRole("moder") || (User.IsInRole("admin")))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TrafficPoliceOfficers" asp-action="Index">Traffic_Police_Officers</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

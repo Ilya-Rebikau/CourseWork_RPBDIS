@@ -29,6 +29,12 @@
         /// <returns>Task</returns>
         Task<T> UpdateAsync(T entity);
         /// <summary>
+        /// Async method to update entity in database by id
+        /// </summary>
+        /// <param name="id">ID of updating entity</param>
+        /// <returns>Task</returns>
+        Task<T> UpdateByIdAsync(int id);
+        /// <summary>
         /// Async method to delete entity from database
         /// </summary>
         /// <param name="entity">Deleting entity</param>

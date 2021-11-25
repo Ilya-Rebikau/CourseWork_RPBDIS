@@ -61,7 +61,7 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Navigation property for DB TrafficPoliceOfficers
         /// </summary>
-        public TrafficPoliceOfficer Inspector { get; set; }
+        public TrafficPoliceOfficer? Inspector { get; set; }
         /// <summary>
         /// Gets or sets foreign key with car ID for DB Cars
         /// </summary>
@@ -69,6 +69,6 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Navigation property for DB Cars
         /// </summary>
-        public Car Car { get; set; }
+        public Car? Car { get; set; }
     }
 }

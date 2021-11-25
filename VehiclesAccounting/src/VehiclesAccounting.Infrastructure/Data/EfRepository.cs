@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using VehiclesAccounting.Core.Interfaces;
 
 namespace VehiclesAccounting.Infrastructure.Data
@@ -28,7 +29,18 @@ namespace VehiclesAccounting.Infrastructure.Data
         {
             return await Task.Run(() =>
             {
-                Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<T> temp = _dbContext.Entry(entity);
+                EntityEntry<T> temp = _dbContext.Entry(entity);
+                temp.State = EntityState.Modified;
+                _dbContext.SaveChangesAsync();
+                return temp.Entity;
+            });
+        }
+        public async Task<T> UpdateByIdAsync(int id)
+        {
+            return await Task.Run(() =>
+            {
+                T entity = _dbContext.Set<T>().FindAsync(id).Result;
+                EntityEntry<T> temp = _dbContext.Entry(entity);
                 temp.State = EntityState.Modified;
                 _dbContext.SaveChangesAsync();
                 return temp.Entity;

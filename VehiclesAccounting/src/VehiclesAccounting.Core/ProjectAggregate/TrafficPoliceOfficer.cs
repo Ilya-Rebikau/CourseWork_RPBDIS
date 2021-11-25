@@ -52,10 +52,10 @@ namespace VehiclesAccounting.Core.ProjectAggregate
         /// <summary>
         /// Navigation property for DB Cars
         /// </summary>
-        public List<Car> Cars { get; set; }
+        public List<Car>? Cars { get; set; }
         /// <summary>
         /// Navigation property for DB StolenCars
         /// </summary>
-        public List<StolenCar> StolenCars { get; set; }
+        public List<StolenCar>? StolenCars { get; set; }
     }
 }
