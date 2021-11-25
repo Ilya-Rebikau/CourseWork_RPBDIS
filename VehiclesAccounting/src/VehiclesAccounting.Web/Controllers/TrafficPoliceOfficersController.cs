@@ -12,15 +12,15 @@ using VehiclesAccounting.Web.ViewModels.TrafficPoliceOfficers;
 
 namespace VehiclesAccounting.Web.Controllers
 {
-    [Authorize(Roles = "admin, moder")]
+    [Authorize(Roles = "admin")]
     public class TrafficPoliceOfficersController : Controller
     {
-        private readonly ITrafficPoliceOfficerServiceAsync _service;
-        public TrafficPoliceOfficersController(ITrafficPoliceOfficerServiceAsync service)
+        private readonly ITrafficPoliceOfficerService _service;
+        public TrafficPoliceOfficersController(ITrafficPoliceOfficerService service)
         {
             _service = service;
         }
-
+        [HttpGet]
         public async Task<IActionResult> Index(SortState sortOrder, int page = 1)
         {
             int pageSize = 20;

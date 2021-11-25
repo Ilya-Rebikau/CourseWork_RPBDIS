@@ -11,6 +11,26 @@
         AgeAsc,
         AgeDesc,
         PostAsc,
-        PostDesc
+        PostDesc,
+        ProducerAsc,
+        ProducerDesc,
+        CountryAsc,
+        CountryDesc,
+        CategoryAsc,
+        CategoryDesc,
+        DateStartAsc,
+        DateStartDesc,
+        RegistrationNumberAsc,
+        RegistrationNumberDesc,
+        TechPassportNumberAsc,
+        TechPassportNumberDesc,
+        DateInspectionAsc,
+        DateInspectionDesc,
+        TheftDateAsc,
+        TheftDateDesc,
+        MarkAboutFindingAsc,
+        MarkAboutFindingDesc,
+        BodyNumberAsc,
+        BodyNumberDesc
     }
 }

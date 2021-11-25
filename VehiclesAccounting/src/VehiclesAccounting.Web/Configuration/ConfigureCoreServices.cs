@@ -13,7 +13,11 @@ namespace VehiclesAccounting.Web.Configuration
             services.AddScoped<DbContext, VehiclesContext>();
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IServiceAsync<>), typeof(BaseService<>));
-            services.AddScoped(typeof(ITrafficPoliceOfficerServiceAsync), typeof(TrafficPoliceOfficerService));
+            services.AddScoped(typeof(ITrafficPoliceOfficerService), typeof(TrafficPoliceOfficerService));
+            services.AddScoped(typeof(IOwnerService), typeof(OwnerService));
+            services.AddScoped(typeof(ICarBrandService), typeof(CarBrandService));
+            services.AddScoped(typeof(ICarService), typeof(CarService));
+            services.AddScoped(typeof(IStolenCarService), typeof(StolenCarService));
             return services;
         }
     }

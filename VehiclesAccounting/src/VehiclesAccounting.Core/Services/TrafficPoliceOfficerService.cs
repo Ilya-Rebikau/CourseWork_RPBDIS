@@ -3,7 +3,7 @@ using VehiclesAccounting.Core.ProjectAggregate;
 
 namespace VehiclesAccounting.Core.Services
 {
-    public class TrafficPoliceOfficerService : BaseService<TrafficPoliceOfficer>, ITrafficPoliceOfficerServiceAsync
+    public class TrafficPoliceOfficerService : BaseService<TrafficPoliceOfficer>, ITrafficPoliceOfficerService
     {
         public TrafficPoliceOfficerService(IRepository<TrafficPoliceOfficer> repository) : base(repository)
         {
