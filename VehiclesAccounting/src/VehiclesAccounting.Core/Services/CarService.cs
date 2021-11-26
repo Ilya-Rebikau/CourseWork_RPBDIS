@@ -27,7 +27,7 @@ public class CarService : BaseService<Car>, ICarService
         IQueryable<Car>? cars = await _repository.GetAllAsync();
         return await Task.Run(() => cars.Include("TrafficPoliceOfficer").Include("CarBrand").Include("Owner").SingleOrDefaultAsync(e => e.Id == id));
     }
-    public async Task<IEnumerable<Car>> SortFilter(SortState sortOrder, string carBrandName, string bodyNumber, int? ownerId, DateTime dateStart, DateTime dateEnd)
+    public async Task<IEnumerable<Car>> SortFilter(SortState sortOrder, string carBrandName, string bodyNumber, int? ownerId, DateTime? dateStart, DateTime? dateEnd)
     {
         IQueryable<Car> cars = await _repository.GetAllAsync();
         switch (sortOrder)
@@ -51,9 +51,21 @@ public class CarService : BaseService<Car>, ICarService
                 cars = cars.OrderByDescending(x => x.DateInspection);
                 break;
         }
+        if (ownerId is not null)
+        {
+            cars = cars.Include("TrafficPoliceOfficer").Include("CarBrand").Include("Owner").Where(c => c.OwnerId == ownerId);
+        }
         if (!string.IsNullOrEmpty(carBrandName))
         {
             cars = cars.Include("TrafficPoliceOfficer").Include("CarBrand").Include("Owner").Where(c => c.CarBrand.Name.Contains(carBrandName));
+        }
+        if (!string.IsNullOrEmpty(bodyNumber))
+        {
+            cars = cars.Include("TrafficPoliceOfficer").Include("CarBrand").Include("Owner").Where(c => c.BodyNumber.Contains(carBrandName));
+        }
+        if (dateStart is not null && dateEnd is not null)
+        {
+            cars = cars.Include("TrafficPoliceOfficer").Include("CarBrand").Include("Owner").Where(c => c.DateRegistration <= dateEnd && c.DateRegistration >= dateStart);
         }
         return cars.AsEnumerable();
     }

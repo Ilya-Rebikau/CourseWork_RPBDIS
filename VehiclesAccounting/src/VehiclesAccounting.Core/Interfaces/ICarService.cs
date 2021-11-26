@@ -18,5 +18,5 @@ public interface ICarService : IServiceAsync<Car>
     /// <param name="dateStart">Start of date registration interval</param>
     /// <param name="dateEnd">End of date registration interval</param>
     /// <returns>Sorted and filtered cars</returns>
-    Task<IEnumerable<Car>> SortFilter(SortState sortOrder, string carBrandName, string bodyNumber, int? ownerId, DateTime dateStart, DateTime dateEnd);
+    Task<IEnumerable<Car>> SortFilter(SortState sortOrder, string carBrandName, string bodyNumber, int? ownerId, DateTime? dateStart, DateTime? dateEnd);
 }

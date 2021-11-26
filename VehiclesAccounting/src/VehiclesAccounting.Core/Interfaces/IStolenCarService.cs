@@ -18,5 +18,5 @@ public interface IStolenCarService : IServiceAsync<StolenCar>
     /// <param name="theftEnd">End of theft date interval</param>
     /// <param name="mark">Mark about was car founded or not</param>
     /// <returns>Sorted and filtered stolen cars</returns>
-    Task<IEnumerable<StolenCar>> SortFilter(SortState sortOrder, string carBrandName, string engineNumber, DateTime theftStart, DateTime theftEnd, string mark);
+    Task<IEnumerable<StolenCar>> SortFilter(SortState sortOrder, string carBrandName, string engineNumber, DateTime? theftStart, DateTime? theftEnd, string mark);
 }

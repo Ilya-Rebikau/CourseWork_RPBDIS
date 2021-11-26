@@ -1,4 +1,5 @@
-﻿using VehiclesAccounting.Core.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 
 namespace VehiclesAccounting.Core.Services;
@@ -15,7 +16,7 @@ public class StolenCarService : BaseService<StolenCar>, IStolenCarService
     {
         _repository = repository;
     }
-    public async Task<IEnumerable<StolenCar>> SortFilter(SortState sortOrder, string carBrandName, string engineNumber, DateTime theftStart, DateTime theftEnd, string mark)
+    public async Task<IEnumerable<StolenCar>> SortFilter(SortState sortOrder, string carBrandName, string engineNumber, DateTime? theftStart, DateTime? theftEnd, string mark)
     {
         IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
         switch (sortOrder)
@@ -44,6 +45,22 @@ public class StolenCarService : BaseService<StolenCar>, IStolenCarService
             case SortState.TheftDateDesc:
                 stolenCars = stolenCars.OrderBy(x => x.MarkAboutFinding);
                 break;
+        }
+        if (!string.IsNullOrEmpty(mark))
+        {
+            stolenCars = stolenCars.Include("TrafficPoliceOfficer").Include("Car").Where(c => c.MarkAboutFinding == false);
+        }
+        if (!string.IsNullOrEmpty(carBrandName))
+        {
+            stolenCars = stolenCars.Include("TrafficPoliceOfficer").Include("Car").Where(c => c.Car.CarBrand.Name.Contains(carBrandName));
+        }
+        if (!string.IsNullOrEmpty(engineNumber))
+        {
+            stolenCars = stolenCars.Include("TrafficPoliceOfficer").Include("Car").Where(c => c.Car.EngineNumber.Contains(engineNumber));
+        }
+        if (theftStart is not null && theftEnd is not null)
+        {
+            stolenCars = stolenCars.Include("TrafficPoliceOfficer").Include("Car").Where(c => c.TheftDate <= theftEnd && c.TheftDate >= theftStart);
         }
         return stolenCars.AsEnumerable();
     }
