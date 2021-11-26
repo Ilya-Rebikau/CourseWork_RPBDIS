@@ -51,7 +51,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var car = await _service.GetCarByIdAsync((int)id);
+            var car = await _service.GetByIdAsync((int)id);
             if (car == null)
             {
                 return NotFound();
