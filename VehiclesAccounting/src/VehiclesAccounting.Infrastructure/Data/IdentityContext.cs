@@ -2,14 +2,20 @@
 using Microsoft.EntityFrameworkCore;
 using VehiclesAccounting.Core.ProjectAggregate;
 
-namespace VehiclesAccounting.Data
+namespace VehiclesAccounting.Infrastructure.Data;
+
+/// <summary>
+/// Context for identity
+/// </summary>
+public class IdentityContext : IdentityDbContext<User>
 {
-    public class IdentityContext : IdentityDbContext<User>
+    /// <summary>
+    /// Constructor of class
+    /// </summary>
+    /// <param name="options">DbContextOptions object</param>
+    public IdentityContext(DbContextOptions<IdentityContext> options)
+        : base(options)
     {
-        public IdentityContext(DbContextOptions<IdentityContext> options)
-            : base(options)
-        {
-            Database.EnsureCreated();
-        }
+        Database.EnsureCreated();
     }
 }

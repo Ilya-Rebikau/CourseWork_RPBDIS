@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VehiclesAccounting.Core.ProjectAggregate;
-using VehiclesAccounting.Data;
 using VehiclesAccounting.Infrastructure.Data;
 using VehiclesAccounting.Web.Configuration;
 using VehiclesAccounting.Web.Middlewares;
