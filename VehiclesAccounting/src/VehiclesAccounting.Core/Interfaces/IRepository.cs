@@ -40,5 +40,11 @@
         /// <param name="entity">Deleting entity</param>
         /// <returns>Deleted entity</returns>
         Task<T> DeleteAsync(T entity);
+        /// <summary>
+        /// Async method to delete entity from database by id
+        /// </summary>
+        /// <param name="id">ID of deleting entity</param>
+        /// <returns>Deleted entity</returns>
+        Task<T> DeleteByIdAsync(int id);
     }
 }

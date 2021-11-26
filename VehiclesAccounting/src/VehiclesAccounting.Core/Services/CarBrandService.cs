@@ -9,93 +9,43 @@ namespace VehiclesAccounting.Core.Services
         {
             _repository = repository;
         }
-        private async Task<IEnumerable<CarBrand>> SortByNameAscAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderBy(x => x.Name).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByNameDescAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderByDescending(x => x.Name).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByProducerAscAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderBy(x => x.Producer).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByProducerDescAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderByDescending(x => x.Producer).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByCountryAscAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderBy(x => x.Country).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByCountryDescAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderByDescending(x => x.Country).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByDateStartAscAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderBy(x => x.DateStart).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByDateStartDescAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderByDescending(x => x.DateStart).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByCategoryAscAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderBy(x => x.Category).AsEnumerable());
-        }
-        private async Task<IEnumerable<CarBrand>> SortByCategoryDescAsync()
-        {
-            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
-            return await Task.Run(() => carBrands.OrderByDescending(x => x.Category).AsEnumerable());
-        }
         public async Task<IEnumerable<CarBrand>> Sort(SortState sortOrder)
         {
-            IEnumerable<CarBrand> carBrands = await ReadAllAsync();
+            IQueryable<CarBrand> carBrands = await _repository.GetAllAsync();
             switch (sortOrder)
             {
                 case SortState.NameAsc:
-                    carBrands = await SortByNameAscAsync();
+                    carBrands = carBrands.OrderBy(x => x.Name);
                     break;
                 case SortState.NameDesc:
-                    carBrands = await SortByNameDescAsync();
+                    carBrands = carBrands.OrderByDescending(x => x.Name);
                     break;
                 case SortState.ProducerAsc:
-                    carBrands = await SortByProducerAscAsync();
+                    carBrands = carBrands.OrderBy(x => x.Producer);
                     break;
                 case SortState.ProducerDesc:
-                    carBrands = await SortByProducerDescAsync();
+                    carBrands = carBrands.OrderByDescending(x => x.Producer);
                     break;
                 case SortState.CountryAsc:
-                    carBrands = await SortByCountryAscAsync();
+                    carBrands = carBrands.OrderBy(x => x.Country);
                     break;
                 case SortState.CountryDesc:
-                    carBrands = await SortByCountryDescAsync();
+                    carBrands = carBrands.OrderByDescending(x => x.Country);
                     break;
                 case SortState.DateStartAsc:
-                    carBrands = await SortByDateStartAscAsync();
+                    carBrands = carBrands.OrderBy(x => x.DateStart);
                     break;
                 case SortState.DateStartDesc:
-                    carBrands = await SortByDateStartDescAsync();
+                    carBrands = carBrands.OrderByDescending(x => x.DateStart);
                     break;
                 case SortState.CategoryAsc:
-                    carBrands = await SortByCategoryAscAsync();
+                    carBrands = carBrands.OrderBy(x => x.Category);
                     break;
                 case SortState.CategoryDesc:
-                    carBrands = await SortByCategoryDescAsync();
+                    carBrands = carBrands.OrderByDescending(x => x.Category);
                     break;
             }
-            return carBrands;
+            return carBrands.AsEnumerable();
         }
     }
 }

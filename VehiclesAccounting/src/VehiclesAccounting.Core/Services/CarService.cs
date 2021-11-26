@@ -1,69 +1,54 @@
-﻿using VehiclesAccounting.Core.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 
 namespace VehiclesAccounting.Core.Services
 {
     public class CarService : BaseService<Car>, ICarService
     {
-        public CarService(IRepository<Car> repository) : base(repository)
+        private readonly ICarRepository _carRepository;
+        public CarService(ICarRepository repository) : base(repository)
         {
-            _repository = repository;
+            _carRepository = repository;
         }
-        private async Task<IEnumerable<Car>> SortByRegistrationNumberAscAsync()
+        public async Task<Car> GetCarByIdAsync(int id)
+        {
+            return await _carRepository.GetCarByIdAsync(id);
+        }
+        public async Task<IEnumerable<Car>> ReadAllCarsAsync()
+        {
+            IQueryable<Car>? results = await _carRepository.GetAllCarsAsync();
+            return await Task.Run(() => results.AsEnumerable());
+        }
+        public async Task<IEnumerable<Car>> SortFilter(SortState sortOrder, string carBrandName)
         {
             IQueryable<Car> cars = await _repository.GetAllAsync();
-            return await Task.Run(() => cars.OrderBy(x => x.RegistrationNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<Car>> SortByRegistrationNumberDescAsync()
-        {
-            IQueryable<Car> cars = await _repository.GetAllAsync();
-            return await Task.Run(() => cars.OrderByDescending(x => x.RegistrationNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<Car>> SortByTechPassportNumberAscAsync()
-        {
-            IQueryable<Car> cars = await _repository.GetAllAsync();
-            return await Task.Run(() => cars.OrderBy(x => x.TechPassportNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<Car>> SortByTechPassportNumberDescAsync()
-        {
-            IQueryable<Car> cars = await _repository.GetAllAsync();
-            return await Task.Run(() => cars.OrderByDescending(x => x.TechPassportNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<Car>> SortByDateInspectionAscAsync()
-        {
-            IQueryable<Car> cars = await _repository.GetAllAsync();
-            return await Task.Run(() => cars.OrderBy(x => x.DateInspection).AsEnumerable());
-        }
-        private async Task<IEnumerable<Car>> SortByDateInspectionDescAsync()
-        {
-            IQueryable<Car> cars = await _repository.GetAllAsync();
-            return await Task.Run(() => cars.OrderByDescending(x => x.DateInspection).AsEnumerable());
-        }
-        public async Task<IEnumerable<Car>> Sort(SortState sortOrder)
-        {
-            IEnumerable<Car> cars = await ReadAllAsync();
             switch (sortOrder)
             {
                 case SortState.RegistrationNumberAsc:
-                    cars = await SortByRegistrationNumberAscAsync();
+                    cars = cars.OrderBy(x => x.RegistrationNumber);
                     break;
                 case SortState.RegistrationNumberDesc:
-                    cars = await SortByRegistrationNumberDescAsync();
+                    cars = cars.OrderByDescending(x => x.RegistrationNumber);
                     break;
                 case SortState.TechPassportNumberAsc:
-                    cars = await SortByTechPassportNumberAscAsync();
+                    cars = cars.OrderBy(x => x.TechPassportNumber);
                     break;
                 case SortState.TechPassportNumberDesc:
-                    cars = await SortByTechPassportNumberDescAsync();
+                    cars = cars.OrderByDescending(x => x.TechPassportNumber);
                     break;
                 case SortState.DateInspectionAsc:
-                    cars = await SortByDateInspectionAscAsync();
+                    cars = cars.OrderBy(x => x.DateInspection);
                     break;
                 case SortState.DateInspectionDesc:
-                    cars = await SortByDateInspectionDescAsync();
+                    cars = cars.OrderByDescending(x => x.DateInspection);
                     break;
             }
-            return cars;
+            if (!string.IsNullOrEmpty(carBrandName))
+            {
+                cars = cars.Include("TrafficPoliceOfficer").Include("CarBrand").Include("Owner").Where(c => c.CarBrand.Name.Contains(carBrandName));
+            }
+            return cars.AsEnumerable();
         }
     }
 }

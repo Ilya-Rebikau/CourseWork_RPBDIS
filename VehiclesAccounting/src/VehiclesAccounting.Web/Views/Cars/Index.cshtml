@@ -1,0 +1,57 @@
+﻿@model CarViewModel
+@{
+    ViewData["Title"] = "Cars";
+}
+<h1>List of cars</h1>
+<p>
+    <a asp-action="Create">Add car</a>
+</p>
+<form method="get">
+    <div class="form-inline">
+        <label>Car brand name: </label>
+        <input name="carBrandName" value="@Model.FilterViewModel.SelectedCarBrand" class="form-control" />
+        <input type="submit" value="Find" class="btn btn-outline-dark" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.RegistrationNumberSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)">RegistrationNumber</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.TechPassportNumberSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)">TechPassportNumber</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.DateInspectionSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)">DateInspection</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Cars) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechPassportNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInspection)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index" 
+           page-url-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

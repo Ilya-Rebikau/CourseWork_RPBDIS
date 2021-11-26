@@ -9,77 +9,45 @@ namespace VehiclesAccounting.Core.Services
         {
             _repository = repository;
         }
-        private async Task<IEnumerable<Owner>> SortByNameAscAsync()
+        public async Task<IEnumerable<Owner>> SortFilter(SortState sortOrder, string categories, string didLicenseFinish)
         {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderBy(x => x.Name).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortByNameDescAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderByDescending(x => x.Name).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortBySurnameAscAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderBy(x => x.Surname).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortBySurnameDescAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderByDescending(x => x.Surname).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortByPatronymicAscAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderBy(x => x.Patronymic).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortByPatronymicDescAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderByDescending(x => x.Patronymic).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortByBirthdayAscAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderBy(x => x.Birthday).AsEnumerable());
-        }
-        private async Task<IEnumerable<Owner>> SortByBirthdayDescAsync()
-        {
-            IQueryable<Owner> owners = await _repository.GetAllAsync();
-            return await Task.Run(() => owners.OrderByDescending(x => x.Birthday).AsEnumerable());
-        }
-        public async Task<IEnumerable<Owner>> Sort(SortState sortOrder)
-        {
-            IEnumerable<Owner> owners = await ReadAllAsync();
+            IEnumerable<Owner> owners = await _repository.GetAllAsync();
             switch (sortOrder)
             {
                 case SortState.NameAsc:
-                    owners = await SortByNameAscAsync();
+                    owners = owners.OrderBy(x => x.Name);
                     break;
                 case SortState.NameDesc:
-                    owners = await SortByNameDescAsync();
+                    owners = owners.OrderByDescending(x => x.Name);
                     break;
                 case SortState.SurnameAsc:
-                    owners = await SortBySurnameAscAsync();
+                    owners = owners.OrderBy(x => x.Surname);
                     break;
                 case SortState.SurnameDesc:
-                    owners = await SortBySurnameDescAsync();
+                    owners = owners.OrderByDescending(x => x.Surname);
                     break;
                 case SortState.PatronymicAsc:
-                    owners = await SortByPatronymicAscAsync();
+                    owners = owners.OrderBy(x => x.Patronymic);
                     break;
                 case SortState.PatronymicDesc:
-                    owners = await SortByPatronymicDescAsync();
+                    owners = owners.OrderByDescending(x => x.Patronymic);
                     break;
                 case SortState.AgeAsc:
-                    owners = await SortByBirthdayAscAsync();
+                    owners = owners.OrderBy(x => x.Birthday);
                     break;
                 case SortState.AgeDesc:
-                    owners = await SortByBirthdayDescAsync();
+                    owners = owners.OrderByDescending(x => x.Birthday);
                     break;
             }
-            return owners;
+            if (!string.IsNullOrEmpty(didLicenseFinish))
+            {
+                owners = owners.Where(p => p.LicenseEnd <= DateTime.Now);
+            }
+            if (!string.IsNullOrEmpty(categories))
+            {
+                owners = owners.Where(p => p.Categories.Contains(categories));
+            }
+            return owners.AsEnumerable();
         }
     }
 }

@@ -5,6 +5,7 @@ using VehiclesAccounting.Web.ViewModels;
 
 namespace VehiclesAccounting.Web.Controllers
 {
+    [ResponseCache(CacheProfileName = "Caching")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

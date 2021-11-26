@@ -5,6 +5,6 @@ namespace VehiclesAccounting.Core.Interfaces
 {
     public interface IStolenCarService : IServiceAsync<StolenCar>
     {
-        Task<IEnumerable<StolenCar>> Sort(SortState sortOrder);
+        Task<IEnumerable<StolenCar>> SortFilter(SortState sortOrder);
     }
 }

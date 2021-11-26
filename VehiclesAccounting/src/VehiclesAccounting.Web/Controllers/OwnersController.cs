@@ -1,72 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
-using VehiclesAccounting.Infrastructure.Data;
-using VehiclesAccounting.Web;
+using VehiclesAccounting.Core.Services;
+using VehiclesAccounting.Web.ViewModels;
+using VehiclesAccounting.Web.ViewModels.Owners;
 
 namespace VehiclesAccounting.Web.Controllers
 {
+    [ResponseCache(CacheProfileName = "Caching")]
+    [Authorize(Roles = "moder, admin")]
     public class OwnersController : Controller
     {
-        private readonly VehiclesContext _context;
-
-        public OwnersController(VehiclesContext context)
+        private readonly IOwnerService _service;
+        public OwnersController(IOwnerService service)
         {
-            _context = context;
+            _service = service;
         }
-
-        // GET: Owners
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(string categories, SortState sortOrder, string didLicenseFinish, int page = 1)
         {
-            return View(await _context.Owners.ToListAsync());
+            int pageSize = 20;
+            IEnumerable<Owner> owners = await _service.SortFilter(sortOrder, categories, didLicenseFinish);
+            int count = owners.ToList().Count;
+            List<Owner> items = owners.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            OwnerViewModel viewModel = new()
+            {
+                PageViewModel = new PageViewModel(count, page, pageSize),
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterViewModel = new FilterViewModel(categories, didLicenseFinish),
+                Owners = items
+            };
+            return View(viewModel);
         }
-
-        // GET: Owners/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var owner = await _context.Owners
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var owner = await _service.GetByIdAsync((int)id);
             if (owner == null)
             {
                 return NotFound();
             }
-
             return View(owner);
         }
-
-        // GET: Owners/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
-        // POST: Owners/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Surname,Patronymic,Birthday,PassportInfo,LicenseNumber,LicenseStart,LicenseEnd,Categories,ExtraInformation")] Owner owner)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(owner);
-                await _context.SaveChangesAsync();
+                await _service.AddAsync(owner);
                 return RedirectToAction(nameof(Index));
             }
             return View(owner);
         }
-
-        // GET: Owners/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,17 +75,13 @@ namespace VehiclesAccounting.Web.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.Owners.FindAsync(id);
+            var owner = await _service.GetByIdAsync((int)id);
             if (owner == null)
             {
                 return NotFound();
             }
             return View(owner);
         }
-
-        // POST: Owners/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Patronymic,Birthday,PassportInfo,LicenseNumber,LicenseStart,LicenseEnd,Categories,ExtraInformation")] Owner owner)
@@ -93,13 +90,11 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(owner);
-                    await _context.SaveChangesAsync();
+                    await _service.UpdateAsync(owner);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,39 +111,30 @@ namespace VehiclesAccounting.Web.Controllers
             }
             return View(owner);
         }
-
-        // GET: Owners/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var owner = await _context.Owners
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var owner = await _service.GetByIdAsync((int)id);
             if (owner == null)
             {
                 return NotFound();
             }
-
             return View(owner);
         }
-
-        // POST: Owners/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var owner = await _context.Owners.FindAsync(id);
-            _context.Owners.Remove(owner);
-            await _context.SaveChangesAsync();
+            var owner = await _service.DeleteAsyncById(id);
             return RedirectToAction(nameof(Index));
         }
-
         private bool OwnerExists(int id)
         {
-            return _context.Owners.Any(e => e.Id == id);
+            return _service.GetByIdAsync(id) is not null;
         }
     }
 }

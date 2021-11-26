@@ -30,6 +30,12 @@
         /// <returns>Old entity</returns>
         Task<T> DeleteAsync(T entity);
         /// <summary>
+        /// Delete entity in database async by id
+        /// </summary>
+        /// <param name="id">ID of deleting entity</param>
+        /// <returns>Old entity</returns>
+        Task<T> DeleteAsyncById(int id);
+        /// <summary>
         /// Add new entity to database
         /// </summary>
         /// <param name="entity">New entity</param>

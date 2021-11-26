@@ -40,5 +40,10 @@ namespace VehiclesAccounting.Core.Services
         {
             return await _repository.GetByIdAsync(id);
         }
+
+        public async Task<T> DeleteAsyncById(int id)
+        {
+            return await _repository.DeleteByIdAsync(id);
+        }
     }
 }

@@ -30,6 +30,18 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="TrafficPoliceOfficers" asp-action="Index">Traffic_Police_Officers</a>
                             </li>
                         }
+                        @if (User.IsInRole("admin") || User.IsInRole("moder"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Owners" asp-action="Index">Owners</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin") || User.IsInRole("moder"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

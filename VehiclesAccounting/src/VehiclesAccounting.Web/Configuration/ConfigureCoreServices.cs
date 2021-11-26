@@ -18,6 +18,7 @@ namespace VehiclesAccounting.Web.Configuration
             services.AddScoped(typeof(ICarBrandService), typeof(CarBrandService));
             services.AddScoped(typeof(ICarService), typeof(CarService));
             services.AddScoped(typeof(IStolenCarService), typeof(StolenCarService));
+            services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
             return services;
         }
     }

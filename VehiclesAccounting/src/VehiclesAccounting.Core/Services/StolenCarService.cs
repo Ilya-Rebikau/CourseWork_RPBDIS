@@ -9,77 +9,37 @@ namespace VehiclesAccounting.Core.Services
         {
             _repository = repository;
         }
-        private async Task<IEnumerable<StolenCar>> SortByRegistrationNumberAscAsync()
+        public async Task<IEnumerable<StolenCar>> SortFilter(SortState sortOrder)
         {
             IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.Car.RegistrationNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByRegistrationNumberDescAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.Car.RegistrationNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByBodyNumberAscAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.Car.BodyNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByBodyNumberDescAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.Car.BodyNumber).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByTheftDateAscAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.TheftDate).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByTheftDateDescAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.TheftDate).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByMarkAscAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.MarkAboutFinding).AsEnumerable());
-        }
-        private async Task<IEnumerable<StolenCar>> SortByMarkDescAsync()
-        {
-            IQueryable<StolenCar> stolenCars = await _repository.GetAllAsync();
-            return await Task.Run(() => stolenCars.OrderBy(x => x.MarkAboutFinding).AsEnumerable());
-        }
-        public async Task<IEnumerable<StolenCar>> Sort(SortState sortOrder)
-        {
-            IEnumerable<StolenCar> stolenCars = await ReadAllAsync();
             switch (sortOrder)
             {
                 case SortState.RegistrationNumberAsc:
-                    stolenCars = await SortByRegistrationNumberAscAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.Car.RegistrationNumber);
                     break;
                 case SortState.RegistrationNumberDesc:
-                    stolenCars = await SortByRegistrationNumberDescAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.Car.RegistrationNumber);
                     break;
                 case SortState.BodyNumberAsc:
-                    stolenCars = await SortByBodyNumberAscAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.Car.BodyNumber);
                     break;
                 case SortState.BodyNumberDesc:
-                    stolenCars = await SortByBodyNumberDescAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.Car.BodyNumber);
                     break;
                 case SortState.MarkAboutFindingAsc:
-                    stolenCars = await SortByMarkAscAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.TheftDate);
                     break;
                 case SortState.MarkAboutFindingDesc:
-                    stolenCars = await SortByMarkDescAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.TheftDate);
                     break;
                 case SortState.TheftDateAsc:
-                    stolenCars = await SortByTheftDateAscAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.MarkAboutFinding);
                     break;
                 case SortState.TheftDateDesc:
-                    stolenCars = await SortByTheftDateDescAsync();
+                    stolenCars = stolenCars.OrderBy(x => x.MarkAboutFinding);
                     break;
             }
-            return stolenCars;
+            return stolenCars.AsEnumerable();
         }
     }
 }

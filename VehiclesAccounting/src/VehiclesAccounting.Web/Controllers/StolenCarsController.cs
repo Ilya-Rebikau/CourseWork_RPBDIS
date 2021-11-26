@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Infrastructure.Data;
-using VehiclesAccounting.Web;
 
 namespace VehiclesAccounting.Web.Controllers
 {
+    [ResponseCache(CacheProfileName = "Caching")]
     public class StolenCarsController : Controller
     {
         private readonly VehiclesContext _context;

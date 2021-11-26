@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using VehiclesAccounting.Core.ProjectAggregate;
@@ -7,6 +8,7 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace VehiclesAccounting.Web.Controllers
 {
+    [ResponseCache(CacheProfileName = "Caching")]
     public class AccountController : Controller
     {
         private readonly SignInManager<User> _signInManager;

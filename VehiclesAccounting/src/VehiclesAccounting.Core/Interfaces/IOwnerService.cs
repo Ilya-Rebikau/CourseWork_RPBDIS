@@ -5,6 +5,6 @@ namespace VehiclesAccounting.Core.Interfaces
 {
     public interface IOwnerService : IServiceAsync<Owner>
     {
-        Task<IEnumerable<Owner>> Sort(SortState sortOrder);
+        Task<IEnumerable<Owner>> SortFilter(SortState sortOrder, string categories, string didLicenseFinish);
     }
 }

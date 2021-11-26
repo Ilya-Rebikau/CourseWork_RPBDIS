@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ using VehiclesAccounting.Web.ViewModels.Users;
 
 namespace VehiclesAccounting.Web.Controllers
 {
+    [Authorize(Roles = "admin")]
+    [ResponseCache(CacheProfileName = "Caching")]
     public class UsersController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

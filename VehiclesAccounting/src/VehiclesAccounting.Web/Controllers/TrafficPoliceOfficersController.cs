@@ -12,6 +12,7 @@ using VehiclesAccounting.Web.ViewModels.TrafficPoliceOfficers;
 
 namespace VehiclesAccounting.Web.Controllers
 {
+    [ResponseCache(CacheProfileName = "Caching")]
     [Authorize(Roles = "admin")]
     public class TrafficPoliceOfficersController : Controller
     {
@@ -42,8 +43,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _service.ReadAllAsync();
-            TrafficPoliceOfficer trafficPoliceOfficer = trafficPoliceOfficers.ToList().FirstOrDefault(t => t.Id == id);
+            TrafficPoliceOfficer trafficPoliceOfficer = await _service.GetByIdAsync((int)id);
             if (trafficPoliceOfficer == null)
             {
                 return NotFound();
@@ -127,8 +127,7 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var trafficPoliceOfficer = await _service.GetByIdAsync(id);
-            await _service.DeleteAsync(trafficPoliceOfficer);
+            await _service.DeleteAsyncById(id);
             return RedirectToAction(nameof(Index));
         }
         private bool TrafficPoliceOfficerExists(int id)

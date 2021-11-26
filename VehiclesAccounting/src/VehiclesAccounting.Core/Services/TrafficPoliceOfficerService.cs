@@ -9,93 +9,43 @@ namespace VehiclesAccounting.Core.Services
         {
             _repository = repository;
         }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByNameAscAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderBy(x => x.Name).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByNameDescAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderByDescending(x => x.Name).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortBySurnameAscAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderBy(x => x.Surname).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortBySurnameDescAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderByDescending(x => x.Surname).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByPatronymicAscAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderBy(x => x.Patronymic).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByPatronymicDescAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderByDescending(x => x.Patronymic).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByBirthdayAscAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderBy(x => x.Birthday).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByBirthdayDescAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderByDescending(x => x.Birthday).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByPostAscAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderBy(x => x.Post).AsEnumerable());
-        }
-        private async Task<IEnumerable<TrafficPoliceOfficer>> SortByPostDescAsync()
-        {
-            IQueryable<TrafficPoliceOfficer> trafficPoliceOfficers = await _repository.GetAllAsync();
-            return await Task.Run(() => trafficPoliceOfficers.OrderByDescending(x => x.Post).AsEnumerable());
-        }
         public async Task<IEnumerable<TrafficPoliceOfficer>> Sort(SortState sortOrder)
         {
-            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await ReadAllAsync();
+            IQueryable<TrafficPoliceOfficer>? trafficPoliceOfficers = await _repository.GetAllAsync();
             switch (sortOrder)
             {
                 case SortState.NameAsc:
-                    trafficPoliceOfficers = await SortByNameAscAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderBy(x => x.Name);
                     break;
                 case SortState.NameDesc:
-                    trafficPoliceOfficers = await SortByNameDescAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderByDescending(x => x.Name);
                     break;
                 case SortState.SurnameAsc:
-                    trafficPoliceOfficers = await SortBySurnameAscAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderBy(x => x.Surname);
                     break;
                 case SortState.SurnameDesc:
-                    trafficPoliceOfficers = await SortBySurnameDescAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderByDescending(x => x.Surname);
                     break;
                 case SortState.PatronymicAsc:
-                    trafficPoliceOfficers = await SortByPatronymicAscAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderBy(x => x.Patronymic);
                     break;
                 case SortState.PatronymicDesc:
-                    trafficPoliceOfficers = await SortByPatronymicDescAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderByDescending(x => x.Patronymic);
                     break;
                 case SortState.AgeAsc:
-                    trafficPoliceOfficers = await SortByBirthdayAscAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderBy(x => x.Birthday);
                     break;
                 case SortState.AgeDesc:
-                    trafficPoliceOfficers = await SortByBirthdayDescAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderByDescending(x => x.Birthday);
                     break;
                 case SortState.PostAsc:
-                    trafficPoliceOfficers = await SortByPostAscAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderBy(x => x.Post);
                     break;
                 case SortState.PostDesc:
-                    trafficPoliceOfficers = await SortByPostDescAsync();
+                    trafficPoliceOfficers = trafficPoliceOfficers.OrderByDescending(x => x.Post);
                     break;
             }
-            return trafficPoliceOfficers;
+            return trafficPoliceOfficers.AsEnumerable();
         }
     }
 }

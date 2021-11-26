@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,7 +42,13 @@ namespace VehiclesAccounting.Web
                 options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
             services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options => 
+                options.CacheProfiles.Add("Caching",
+                new CacheProfile()
+                {
+                    Location = ResponseCacheLocation.Any,
+                    Duration = 300
+                }));
             services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<IdentityContext>();
             services.AddCoreServices();

@@ -6,7 +6,7 @@ namespace VehiclesAccounting.Infrastructure.Data
 {
     public class EfRepository<T> : IRepository<T> where T : class, IEntity
     {
-        private readonly DbContext _dbContext;
+        protected DbContext _dbContext;
         public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
@@ -31,7 +31,7 @@ namespace VehiclesAccounting.Infrastructure.Data
             {
                 EntityEntry<T> temp = _dbContext.Entry(entity);
                 temp.State = EntityState.Modified;
-                _dbContext.SaveChangesAsync();
+                _dbContext.SaveChanges();
                 return temp.Entity;
             });
         }
@@ -39,10 +39,10 @@ namespace VehiclesAccounting.Infrastructure.Data
         {
             return await Task.Run(() =>
             {
-                T entity = _dbContext.Set<T>().FindAsync(id).Result;
+                T entity = _dbContext.Set<T>().SingleOrDefault(x => x.Id == id);
                 EntityEntry<T> temp = _dbContext.Entry(entity);
                 temp.State = EntityState.Modified;
-                _dbContext.SaveChangesAsync();
+                _dbContext.SaveChanges();
                 return temp.Entity;
             });
         }
@@ -51,6 +51,18 @@ namespace VehiclesAccounting.Infrastructure.Data
             T oldEntity = await Task.Run(() => _dbContext.Set<T>().Remove(entity).Entity);
             await _dbContext.SaveChangesAsync();
             return oldEntity;
+        }
+
+        public async Task<T> DeleteByIdAsync(int id)
+        {
+            return await Task.Run(() =>
+            {
+                T entity = _dbContext.Set<T>().SingleOrDefault(x => x.Id == id);
+                EntityEntry<T> temp = _dbContext.Entry(entity);
+                temp.State = EntityState.Deleted;
+                _dbContext.SaveChanges();
+                return temp.Entity;
+            });
         }
     }
 }
