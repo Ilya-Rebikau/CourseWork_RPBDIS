@@ -8,6 +8,5 @@ namespace VehiclesAccounting.Web.ViewModels.CarBrands
         public IEnumerable<CarBrand> CarBrands { get; set; }
         public PageViewModel PageViewModel { get; set; }
         public SortViewModel SortViewModel { get; set; }
-        //public FilterViewModel FilterViewModel { get; set; }
     }
 }

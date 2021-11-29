@@ -1,0 +1,93 @@
+﻿@model StolenCarViewModel
+@{
+    ViewData["Title"] = "Stolen cars";
+}
+<h1>List of stolen cars</h1>
+<p>
+    <a asp-action="Create">Add stolen car</a>
+</p>
+<form method="get">
+    <div class="form-inline">
+        <label>Car brand name: </label>
+        <input name="carBrandName" value="@Model.FilterViewModel.SelectedCarBrand" class="form-control" />
+        <label>Engine number of car:</label>
+        <input name="engineNumber" value="@Model.FilterViewModel.SelectedEngineNumber" class="form-control" />
+        <label>Only cars which were not found:</label>
+        <input name="mark" type="checkbox" class="form-check-input" value="@Model.FilterViewModel.SelectedMark" />
+        <br />
+        <label>Theft date from</label>
+        <input name="theftStart" type="date" value="@Model.FilterViewModel.SelectedTheftStart" class="form-control" />
+        <label>to:</label> 
+        <input name="theftEnd" type="date" value="@Model.FilterViewModel.SelectedTheftEnd" class="form-control" />
+        <input type="submit" value="Find" class="btn btn-outline-dark" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.BodyNumberSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-engineNumber="@(Model.FilterViewModel.SelectedEngineNumber)"
+                asp-route-mark="@(Model.FilterViewModel.SelectedMark)"
+                asp-route-theftStart="@(Model.FilterViewModel.SelectedTheftStart)"
+                asp-route-theftEnd="@(Model.FilterViewModel.SelectedTheftEnd)">Body number</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.RegistrationNumberSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-engineNumber="@(Model.FilterViewModel.SelectedEngineNumber)"
+                asp-route-mark="@(Model.FilterViewModel.SelectedMark)"
+                asp-route-theftStart="@(Model.FilterViewModel.SelectedTheftStart)"
+                asp-route-theftEnd="@(Model.FilterViewModel.SelectedTheftEnd)">Registration number</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.MarkAboutFindingSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-engineNumber="@(Model.FilterViewModel.SelectedEngineNumber)"
+                asp-route-mark="@(Model.FilterViewModel.SelectedMark)"
+                asp-route-theftStart="@(Model.FilterViewModel.SelectedTheftStart)"
+                asp-route-theftEnd="@(Model.FilterViewModel.SelectedTheftEnd)">Mark about finding</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.TheftDateSort)"
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-engineNumber="@(Model.FilterViewModel.SelectedEngineNumber)"
+                asp-route-mark="@(Model.FilterViewModel.SelectedMark)"
+                asp-route-theftStart="@(Model.FilterViewModel.SelectedTheftStart)"
+                asp-route-theftEnd="@(Model.FilterViewModel.SelectedTheftEnd)">Theft date</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.StolenCars) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.BodyNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarkAboutFinding)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TheftDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<page-link page-model="Model.PageViewModel" page-action="Index" 
+           page-url-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+           page-url-engineNumber="@(Model.FilterViewModel.SelectedEngineNumber)"
+           page-url-mark="@(Model.FilterViewModel.SelectedMark)"
+           page-url-theftStart="@(Model.FilterViewModel.SelectedTheftStart)"
+           page-url-theftEnd="@(Model.FilterViewModel.SelectedTheftEnd)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

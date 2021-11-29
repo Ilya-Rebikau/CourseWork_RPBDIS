@@ -33,6 +33,12 @@
                         @if (User.IsInRole("admin") || User.IsInRole("moder"))
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="CarBrands" asp-action="Index">Car_brands</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin") || User.IsInRole("moder"))
+                        {
+                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Owners" asp-action="Index">Owners</a>
                             </li>
                         }
@@ -42,6 +48,41 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">Cars</a>
                             </li>
                         }
+                        @if (User.IsInRole("admin") || User.IsInRole("moder"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="StolenCars" asp-action="Index">Stolen_cars</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                            </li>
+                        }
+                        <li>
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+                                        <p>@User.Identity.Name</p>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="Login">Login</a>
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>

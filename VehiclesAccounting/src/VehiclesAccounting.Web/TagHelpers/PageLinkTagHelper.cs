@@ -41,13 +41,14 @@ namespace VehiclesAccounting.Web.TagHelpers
                 TagBuilder prevItem = CreateTag(PageModel.PageNumber - 1, urlHelper);
                 tag.InnerHtml.AppendHtml(prevItem);
             }
-            tag.InnerHtml.AppendHtml(currentItem);
+            if (PageModel.TotalPages > 1)
+                tag.InnerHtml.AppendHtml(currentItem);
             if (PageModel.HasNextPage)
             {
                 TagBuilder nextItem = CreateTag(PageModel.PageNumber + 1, urlHelper);
                 tag.InnerHtml.AppendHtml(nextItem);
             }
-            if (PageModel.TotalPages != PageModel.PageNumber + 1 && PageModel.TotalPages != PageModel.PageNumber)
+            if (PageModel.TotalPages != PageModel.PageNumber + 1 && PageModel.TotalPages != PageModel.PageNumber && PageModel.TotalPages != 0)
             {
                 TagBuilder lastItem = CreateTag(PageModel.TotalPages, urlHelper);
                 tag.InnerHtml.AppendHtml(lastItem);

@@ -10,6 +10,14 @@
     <div class="form-inline">
         <label>Car brand name: </label>
         <input name="carBrandName" value="@Model.FilterViewModel.SelectedCarBrand" class="form-control" />
+        <label>Body number of car:</label>
+        <input name="bodyNumber" value="@Model.FilterViewModel.SelectedBodyNumber" class="form-control" />
+        <label>Passport information of owner:</label>
+        <input name="passportInfo" value="@Model.FilterViewModel.SelectedPassportInfo" class="form-control" />
+        <label>Date of registration from </label>
+        <input name="dateStart" type="date" value="@Model.FilterViewModel.SelectedDateStart" class="form-control" />
+        <label>to:</label> 
+        <input name="dateEnd" type="date" value="@Model.FilterViewModel.SelectedDateEnd" class="form-control" />
         <input type="submit" value="Find" class="btn btn-outline-dark" />
     </div>
 </form>
@@ -18,15 +26,27 @@
         <tr>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.RegistrationNumberSort)"
-                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)">RegistrationNumber</a>
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-bodyNumber="@(Model.FilterViewModel.SelectedBodyNumber)"
+                asp-route-passportInfo="@(Model.FilterViewModel.SelectedPassportInfo)"
+                asp-route-dateStart="@(Model.FilterViewModel.SelectedDateStart)"
+                asp-route-dateEnd="@(Model.FilterViewModel.SelectedDateEnd)">Registration number</a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.TechPassportNumberSort)"
-                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)">TechPassportNumber</a>
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-bodyNumber="@(Model.FilterViewModel.SelectedBodyNumber)"
+                asp-route-passportInfo="@(Model.FilterViewModel.SelectedPassportInfo)"
+                asp-route-dateStart="@(Model.FilterViewModel.SelectedDateStart)"
+                asp-route-dateEnd="@(Model.FilterViewModel.SelectedDateEnd)">Technical passport number</a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.DateInspectionSort)"
-                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)">DateInspection</a>
+                asp-route-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+                asp-route-bodyNumber="@(Model.FilterViewModel.SelectedBodyNumber)"
+                asp-route-passportInfo="@(Model.FilterViewModel.SelectedPassportInfo)"
+                asp-route-dateStart="@(Model.FilterViewModel.SelectedDateStart)"
+                asp-route-dateEnd="@(Model.FilterViewModel.SelectedDateEnd)">Date of last inspection</a>
             </th>
             <th></th>
         </tr>
@@ -54,4 +74,8 @@
 </table>
 <page-link page-model="Model.PageViewModel" page-action="Index" 
            page-url-carBrandName="@(Model.FilterViewModel.SelectedCarBrand)"
+           page-url-bodyNumber="@(Model.FilterViewModel.SelectedBodyNumber)"
+           page-url-passportInfo="@(Model.FilterViewModel.SelectedPassportInfo)"
+           page-url-dateStart="@(Model.FilterViewModel.SelectedDateStart)"
+           page-url-dateEnd="@(Model.FilterViewModel.SelectedDateEnd)"
            page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

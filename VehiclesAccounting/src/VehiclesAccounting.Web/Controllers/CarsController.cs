@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -29,17 +30,17 @@ namespace VehiclesAccounting.Web.Controllers
             _service = service;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(SortState sortOrder, string carBrandName, int page = 1)
+        public async Task<IActionResult> Index(SortState sortOrder, string carBrandName, string bodyNumber, string passportInfo, DateTime? dateStart, DateTime? dateEnd, int page = 1)
         {
             int pageSize = 20;
-            IEnumerable<Car> cars = await _service.SortFilter(sortOrder, carBrandName);
+            IEnumerable<Car> cars = await _service.SortFilter(sortOrder, carBrandName, bodyNumber, passportInfo, dateStart, dateEnd);
             int count = cars.ToList().Count;
             List<Car> items = cars.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             CarViewModel viewModel = new()
             {
                 PageViewModel = new PageViewModel(count, page, pageSize),
                 SortViewModel = new SortViewModel(sortOrder),
-                FilterViewModel = new FilterViewModel(carBrandName),
+                FilterViewModel = new FilterViewModel(carBrandName, bodyNumber, passportInfo, dateStart, dateEnd),
                 Cars = items
             };
             return View(viewModel);
@@ -59,9 +60,9 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers.AsEnumerable(), "Id", "Surname");
-            ViewData["CarBrandId"] = new SelectList(carBrands.AsEnumerable(), "Id", "Name");
-            ViewData["OwnerId"] = new SelectList(owners.AsEnumerable(), "Id", "Surname");
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Surname");
+            ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name");
+            ViewData["OwnerId"] = new SelectList(owners, "Id", "Surname");
             return View(car);
         }
         [HttpGet]
@@ -70,9 +71,9 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers.AsEnumerable(), "Id", "Id");
-            ViewData["CarBrandId"] = new SelectList(carBrands.AsEnumerable(), "Id", "Name");
-            ViewData["OwnerId"] = new SelectList(owners.AsEnumerable(), "Id", "PassportInfo");
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id");
+            ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name");
+            ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo");
             return View();
         }
         [HttpPost]
@@ -85,13 +86,12 @@ namespace VehiclesAccounting.Web.Controllers
                 await _service.AddAsync(car);
                 return RedirectToAction(nameof(Index));
             }
-            var cars = await _service.ReadAllAsync();
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers.AsEnumerable(), "Id", "Id", car.TrafficPoliceOfficerId);
-            ViewData["CarBrandId"] = new SelectList(carBrands.AsEnumerable(), "Id", "Name", car.CarBrandId);
-            ViewData["OwnerId"] = new SelectList(owners.AsEnumerable(), "Id", "PassportInfo", car.OwnerId);
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", car.TrafficPoliceOfficerId);
+            ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
+            ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
         }
         [HttpGet]
@@ -109,9 +109,9 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers.AsEnumerable(), "Id", "Id", car.TrafficPoliceOfficerId);
-            ViewData["CarBrandId"] = new SelectList(carBrands.AsEnumerable(), "Id", "Name", car.CarBrandId);
-            ViewData["OwnerId"] = new SelectList(owners.AsEnumerable(), "Id", "PassportInfo", car.OwnerId);
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", car.TrafficPoliceOfficerId);
+            ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
+            ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
         }
         [HttpPost]
@@ -141,13 +141,12 @@ namespace VehiclesAccounting.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var cars = await _service.ReadAllAsync();
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers.AsEnumerable(), "Id", "Id", car.TrafficPoliceOfficerId);
-            ViewData["CarBrandId"] = new SelectList(carBrands.AsEnumerable(), "Id", "Name", car.CarBrandId);
-            ViewData["OwnerId"] = new SelectList(owners.AsEnumerable(), "Id", "PassportInfo", car.OwnerId);
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", car.TrafficPoliceOfficerId);
+            ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
+            ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
         }
         [HttpGet]
