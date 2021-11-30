@@ -59,7 +59,8 @@ namespace VehiclesAccounting.Web.Controllers
             var cars = await _carService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber");
-            ViewData["InspectorId"] = new SelectList(trafficPoliceOfficers, "Id", "Id");
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB");
             return View(stolenCar);
         }
 
@@ -69,7 +70,8 @@ namespace VehiclesAccounting.Web.Controllers
             var cars = await _carService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber");
-            ViewData["InspectorId"] = new SelectList(trafficPoliceOfficers, "Id", "Id");
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB");
             return View();
         }
         [HttpPost]
@@ -84,7 +86,8 @@ namespace VehiclesAccounting.Web.Controllers
             var cars = await _carService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber", stolenCar.CarId);
-            ViewData["InspectorId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", stolenCar.InspectorId);
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB", stolenCar.InspectorId);
             return View(stolenCar);
         }
 
@@ -103,7 +106,8 @@ namespace VehiclesAccounting.Web.Controllers
             var cars = await _carService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber", stolenCar.CarId);
-            ViewData["InspectorId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", stolenCar.InspectorId);
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB", stolenCar.InspectorId);
             return View(stolenCar);
         }
         [HttpPost]
@@ -136,7 +140,8 @@ namespace VehiclesAccounting.Web.Controllers
             var cars = await _carService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber", stolenCar.CarId);
-            ViewData["InspectorId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", stolenCar.InspectorId);
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB", stolenCar.InspectorId);
             return View(stolenCar);
         }
 

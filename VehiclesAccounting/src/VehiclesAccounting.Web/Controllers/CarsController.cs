@@ -71,7 +71,8 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id");
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB");
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name");
             ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo");
             return View();
@@ -89,7 +90,8 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", car.TrafficPoliceOfficerId);
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
             ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
@@ -109,7 +111,8 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", car.TrafficPoliceOfficerId);
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
             ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
@@ -144,7 +147,8 @@ namespace VehiclesAccounting.Web.Controllers
             var owners = await _ownerService.ReadAllAsync();
             var trafficPoliceOfficers = await _officerService.ReadAllAsync();
             var carBrands = await _brandService.ReadAllAsync();
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Id", car.TrafficPoliceOfficerId);
+            IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
             ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
