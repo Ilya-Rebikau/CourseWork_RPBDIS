@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Core.Services;
@@ -73,7 +73,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var trafficPoliceOfficer = await _service.UpdateByIdAsync((int)id);
+            TrafficPoliceOfficer trafficPoliceOfficer = await _service.UpdateByIdAsync((int)id);
             if (trafficPoliceOfficer == null)
             {
                 return NotFound();

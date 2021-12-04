@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Core.Services;
-using VehiclesAccounting.Infrastructure.Data;
 using VehiclesAccounting.Web.ViewModels;
 using VehiclesAccounting.Web.ViewModels.StolenCars;
 
@@ -51,13 +50,13 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var stolenCar = await _service.GetByIdAsync((int)id);
+            StolenCar stolenCar = await _service.GetByIdAsync((int)id);
             if (stolenCar == null)
             {
                 return NotFound();
             }
-            var cars = await _carService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<Car> cars = await _carService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber");
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB");
@@ -67,8 +66,8 @@ namespace VehiclesAccounting.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var cars = await _carService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<Car> cars = await _carService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber");
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB");
@@ -83,8 +82,8 @@ namespace VehiclesAccounting.Web.Controllers
                 await _service.AddAsync(stolenCar);
                 return RedirectToAction(nameof(Index));
             }
-            var cars = await _carService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<Car> cars = await _carService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber", stolenCar.CarId);
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB", stolenCar.InspectorId);
@@ -98,13 +97,13 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var stolenCar = await _service.GetByIdAsync((int)id);
+            StolenCar stolenCar = await _service.GetByIdAsync((int)id);
             if (stolenCar == null)
             {
                 return NotFound();
             }
-            var cars = await _carService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<Car> cars = await _carService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber", stolenCar.CarId);
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB", stolenCar.InspectorId);
@@ -137,8 +136,8 @@ namespace VehiclesAccounting.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var cars = await _carService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<Car> cars = await _carService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
             ViewData["CarId"] = new SelectList(cars, "Id", "RegistrationNumber", stolenCar.CarId);
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["InspectorId"] = new SelectList(officers, "Id", "NSPB", stolenCar.InspectorId);
@@ -152,7 +151,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var stolenCar = await _service.GetByIdAsync((int)id);
+            StolenCar stolenCar = await _service.GetByIdAsync((int)id);
             if (stolenCar == null)
             {
                 return NotFound();
@@ -163,7 +162,7 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var stolenCar = await _service.DeleteAsyncById(id);
+            StolenCar stolenCar = await _service.DeleteAsyncById(id);
             return RedirectToAction(nameof(Index));
         }
 

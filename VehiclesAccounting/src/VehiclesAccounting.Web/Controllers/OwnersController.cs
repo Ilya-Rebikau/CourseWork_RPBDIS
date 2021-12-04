@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Core.Services;
@@ -44,7 +44,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var owner = await _service.GetByIdAsync((int)id);
+            Owner owner = await _service.GetByIdAsync((int)id);
             if (owner == null)
             {
                 return NotFound();
@@ -75,7 +75,7 @@ namespace VehiclesAccounting.Web.Controllers
                 return NotFound();
             }
 
-            var owner = await _service.GetByIdAsync((int)id);
+            Owner owner = await _service.GetByIdAsync((int)id);
             if (owner == null)
             {
                 return NotFound();
@@ -118,7 +118,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var owner = await _service.GetByIdAsync((int)id);
+            Owner owner = await _service.GetByIdAsync((int)id);
             if (owner == null)
             {
                 return NotFound();
@@ -129,7 +129,7 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var owner = await _service.DeleteAsyncById(id);
+            Owner owner = await _service.DeleteAsyncById(id);
             return RedirectToAction(nameof(Index));
         }
         private bool OwnerExists(int id)

@@ -42,7 +42,10 @@ namespace VehiclesAccounting.Web.TagHelpers
                 tag.InnerHtml.AppendHtml(prevItem);
             }
             if (PageModel.TotalPages > 1)
+            {
                 tag.InnerHtml.AppendHtml(currentItem);
+            }
+
             if (PageModel.HasNextPage)
             {
                 TagBuilder nextItem = CreateTag(PageModel.PageNumber + 1, urlHelper);
@@ -55,7 +58,8 @@ namespace VehiclesAccounting.Web.TagHelpers
             }
             output.Content.AppendHtml(tag);
         }
-        TagBuilder CreateTag(int pageNumber, IUrlHelper urlHelper)
+
+        private TagBuilder CreateTag(int pageNumber, IUrlHelper urlHelper)
         {
             TagBuilder item = new("li");
             TagBuilder link = new("a");

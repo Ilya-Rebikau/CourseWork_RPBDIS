@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Core.Services;
@@ -52,14 +52,14 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var car = await _service.GetByIdAsync((int)id);
+            Car car = await _service.GetByIdAsync((int)id);
             if (car == null)
             {
                 return NotFound();
             }
-            var owners = await _ownerService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
-            var carBrands = await _brandService.ReadAllAsync();
+            IEnumerable<Owner> owners = await _ownerService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<CarBrand> carBrands = await _brandService.ReadAllAsync();
             ViewData["TrafficPoliceOfficerId"] = new SelectList(trafficPoliceOfficers, "Id", "Surname");
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name");
             ViewData["OwnerId"] = new SelectList(owners, "Id", "Surname");
@@ -68,9 +68,9 @@ namespace VehiclesAccounting.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var owners = await _ownerService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
-            var carBrands = await _brandService.ReadAllAsync();
+            IEnumerable<Owner> owners = await _ownerService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<CarBrand> carBrands = await _brandService.ReadAllAsync();
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB");
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name");
@@ -87,9 +87,9 @@ namespace VehiclesAccounting.Web.Controllers
                 await _service.AddAsync(car);
                 return RedirectToAction(nameof(Index));
             }
-            var owners = await _ownerService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
-            var carBrands = await _brandService.ReadAllAsync();
+            IEnumerable<Owner> owners = await _ownerService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<CarBrand> carBrands = await _brandService.ReadAllAsync();
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
@@ -103,14 +103,14 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var car = await _service.GetByIdAsync((int)id);
+            Car car = await _service.GetByIdAsync((int)id);
             if (car == null)
             {
                 return NotFound();
             }
-            var owners = await _ownerService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
-            var carBrands = await _brandService.ReadAllAsync();
+            IEnumerable<Owner> owners = await _ownerService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<CarBrand> carBrands = await _brandService.ReadAllAsync();
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
@@ -144,9 +144,9 @@ namespace VehiclesAccounting.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var owners = await _ownerService.ReadAllAsync();
-            var trafficPoliceOfficers = await _officerService.ReadAllAsync();
-            var carBrands = await _brandService.ReadAllAsync();
+            IEnumerable<Owner> owners = await _ownerService.ReadAllAsync();
+            IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
+            IEnumerable<CarBrand> carBrands = await _brandService.ReadAllAsync();
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
             ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
@@ -160,7 +160,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var car = await _service.GetByIdAsync((int)id);
+            Car car = await _service.GetByIdAsync((int)id);
             if (car == null)
             {
                 return NotFound();
@@ -171,7 +171,7 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var car = await _service.DeleteAsyncById(id);
+            Car car = await _service.DeleteAsyncById(id);
             return RedirectToAction(nameof(Index));
         }
         private bool CarExists(int id)

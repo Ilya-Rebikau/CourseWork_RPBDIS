@@ -1,16 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using VehiclesAccounting.Core.Interfaces;
 using VehiclesAccounting.Core.ProjectAggregate;
 using VehiclesAccounting.Core.Services;
-using VehiclesAccounting.Infrastructure.Data;
-using VehiclesAccounting.Web;
 using VehiclesAccounting.Web.ViewModels;
 using VehiclesAccounting.Web.ViewModels.CarBrands;
 
@@ -77,7 +73,7 @@ namespace VehiclesAccounting.Web.Controllers
             {
                 return NotFound();
             }
-            var carBrand = await _service.UpdateByIdAsync((int)id);
+            CarBrand carBrand = await _service.UpdateByIdAsync((int)id);
             if (carBrand == null)
             {
                 return NotFound();
