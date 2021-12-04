@@ -17,9 +17,11 @@ namespace VehiclesAccounting.Web.Controllers
     public class CarBrandsController : Controller
     {
         private readonly ICarBrandService _service;
-        public CarBrandsController(ICarBrandService service)
+        private readonly ICarService _carService;
+        public CarBrandsController(ICarBrandService service, ICarService carService)
         {
             _service = service;
+            _carService = carService;
         }
         [HttpGet]
         public async Task<IActionResult> Index(SortState sortOrder, int page = 1)
@@ -128,7 +130,12 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _service.DeleteAsyncById(id);
+            var cars = await _carService.ReadAllAsync();
+            cars = cars.Where(car => car.CarBrandId == id);
+            if (cars.Count() == 0)
+                await _service.DeleteAsyncById(id);
+            else
+                return Conflict();
             return RedirectToAction(nameof(Index));
         }
         private bool CarBrandExists(int id)

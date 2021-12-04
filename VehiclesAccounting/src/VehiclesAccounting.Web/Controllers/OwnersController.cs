@@ -17,8 +17,10 @@ namespace VehiclesAccounting.Web.Controllers
     public class OwnersController : Controller
     {
         private readonly IOwnerService _service;
-        public OwnersController(IOwnerService service)
+        private readonly ICarService _carService;
+        public OwnersController(IOwnerService service, ICarService carService)
         {
+            _carService = carService;
             _service = service;
         }
         [HttpGet]
@@ -129,7 +131,12 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Owner owner = await _service.DeleteAsyncById(id);
+            var cars = await _carService.ReadAllAsync();
+            cars = cars.Where(car => car.CarBrandId == id);
+            if (cars.Count() == 0)
+                await _service.DeleteAsyncById(id);
+            else
+                return Conflict();
             return RedirectToAction(nameof(Index));
         }
         private bool OwnerExists(int id)

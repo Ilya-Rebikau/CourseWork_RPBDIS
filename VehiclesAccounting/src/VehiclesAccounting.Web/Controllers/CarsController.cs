@@ -22,12 +22,14 @@ namespace VehiclesAccounting.Web.Controllers
         private readonly ITrafficPoliceOfficerService _officerService;
         private readonly IOwnerService _ownerService;
         private readonly ICarBrandService _brandService;
-        public CarsController(ICarService service, ITrafficPoliceOfficerService officerService, IOwnerService ownerService, ICarBrandService brandService)
+        private readonly IStolenCarService _stolenCarService;
+        public CarsController(ICarService service, IStolenCarService stolenCarService, ITrafficPoliceOfficerService officerService, IOwnerService ownerService, ICarBrandService brandService)
         {
             _officerService = officerService;
             _ownerService = ownerService;
             _brandService = brandService;
             _service = service;
+            _stolenCarService = stolenCarService;
         }
         [HttpGet]
         public async Task<IActionResult> Index(SortState sortOrder, string carBrandName, string bodyNumber, string passportInfo, DateTime? dateStart, DateTime? dateEnd, int page = 1)
@@ -171,7 +173,12 @@ namespace VehiclesAccounting.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Car car = await _service.DeleteAsyncById(id);
+            var stolenCars = await _stolenCarService.ReadAllAsync();
+            stolenCars = stolenCars.Where(sc => sc.Car.Id == id);
+            if (stolenCars.Count() == 0)
+                await _service.DeleteAsyncById(id);
+            else
+                return Conflict();
             return RedirectToAction(nameof(Index));
         }
         private bool CarExists(int id)
