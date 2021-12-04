@@ -66,23 +66,6 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
                             </li>
                         }
-                        <li>
-                            @if(User.Identity.IsAuthenticated)
-                            {
-                                <ul class="navbar-nav flex-grow-1">
-                                    <li class="nav-item">
-                                        <p>@User.Identity.Name</p>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                                    </li>
-                                </ul>
-                            }
-                            else
-                            {
-                                <a asp-controller="Account" asp-action="Login">Login</a>
-                            }
-                        </li>
                     </ul>
                 </div>
             </div>
