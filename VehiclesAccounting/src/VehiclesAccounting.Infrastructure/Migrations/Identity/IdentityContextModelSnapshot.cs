@@ -8,7 +8,7 @@ using VehiclesAccounting.Infrastructure.Data;
 
 #nullable disable
 
-namespace VehiclesAccounting.Infrastructure.Data.Migrations.Identity
+namespace VehiclesAccounting.Infrastructure.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
     partial class IdentityContextModelSnapshot : ModelSnapshot

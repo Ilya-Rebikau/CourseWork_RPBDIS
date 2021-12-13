@@ -136,7 +136,7 @@ namespace VehiclesAccounting.Web.Controllers
             if (cars.Count() == 0)
                 await _service.DeleteAsyncById(id);
             else
-                return Conflict();
+                return RedirectToAction("Error", "Home");
             return RedirectToAction(nameof(Index));
         }
         private bool OwnerExists(int id)

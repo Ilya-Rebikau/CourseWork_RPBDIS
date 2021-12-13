@@ -30,68 +30,64 @@
     <TypeIdentifier />
   </Class>
   <Class Name="VehiclesAccounting.Core.Services.BaseService&lt;T&gt;">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+    <Position X="0.5" Y="6.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VehiclesAccounting.Core.Services.CarBrandService">
-    <Position X="4.5" Y="8.25" Width="1.75" />
+    <Position X="4.5" Y="10.5" Width="1.75" />
     <InheritanceLine Type="VehiclesAccounting.Core.Services.BaseService&lt;T&gt;" ManuallyRouted="true">
       <Path>
-        <Point X="1.25" Y="7.651" />
-        <Point X="5.375" Y="7.651" />
-        <Point X="5.375" Y="8.25" />
+        <Point X="1.25" Y="9.651" />
+        <Point X="5.375" Y="9.651" />
+        <Point X="5.375" Y="10.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VehiclesAccounting.Core.Services.CarService">
-    <Position X="6.5" Y="8.25" Width="1.5" />
+    <Position X="6.5" Y="10.5" Width="1.5" />
     <InheritanceLine Type="VehiclesAccounting.Core.Services.BaseService&lt;T&gt;" ManuallyRouted="true">
       <Path>
-        <Point X="1.25" Y="7.651" />
-        <Point X="7.25" Y="7.651" />
-        <Point X="7.25" Y="8.25" />
+        <Point X="1.25" Y="9.651" />
+        <Point X="7.25" Y="9.651" />
+        <Point X="7.25" Y="10.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VehiclesAccounting.Core.Services.OwnerService">
-    <Position X="0.5" Y="8.25" Width="1.5" />
+    <Position X="0.5" Y="10.5" Width="1.5" />
     <InheritanceLine Type="VehiclesAccounting.Core.Services.BaseService&lt;T&gt;" ManuallyRouted="true">
       <Path>
-        <Point X="1.25" Y="7.651" />
-        <Point X="1.25" Y="8.25" />
+        <Point X="1.25" Y="9.651" />
+        <Point X="1.25" Y="10.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VehiclesAccounting.Core.Services.SortState">
-    <Position X="20" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="VehiclesAccounting.Core.Services.StolenCarService">
-    <Position X="8.25" Y="8.25" Width="1.75" />
+    <Position X="8.25" Y="10.5" Width="1.75" />
     <InheritanceLine Type="VehiclesAccounting.Core.Services.BaseService&lt;T&gt;" ManuallyRouted="true">
       <Path>
-        <Point X="1.25" Y="7.651" />
-        <Point X="9.125" Y="7.651" />
-        <Point X="9.125" Y="8.25" />
+        <Point X="1.25" Y="9.651" />
+        <Point X="9.125" Y="9.651" />
+        <Point X="9.125" Y="10.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VehiclesAccounting.Core.Services.TrafficPoliceOfficerService">
-    <Position X="2.25" Y="8.25" Width="2" />
+    <Position X="2.25" Y="10.5" Width="2" />
     <InheritanceLine Type="VehiclesAccounting.Core.Services.BaseService&lt;T&gt;" ManuallyRouted="true">
       <Path>
-        <Point X="1.25" Y="7.651" />
-        <Point X="3.25" Y="7.651" />
-        <Point X="3.25" Y="8.25" />
+        <Point X="1.25" Y="9.651" />
+        <Point X="3.25" Y="9.651" />
+        <Point X="3.25" Y="10.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier />
@@ -120,146 +116,258 @@
   </Class>
   <Class Name="VehiclesAccounting.Web.Program">
     <Position X="4.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Startup">
     <Position X="2.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Configuration.ConfigureCoreServices">
     <Position X="6.25" Y="0.5" Width="2" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\ConfigureCoreServices.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.AccountController">
     <Position X="5.75" Y="4.75" Width="1.75" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.CarBrandsController">
     <Position X="7.75" Y="4.75" Width="1.75" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAABAACQAAAAAAACAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\CarBrandsController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.CarsController">
     <Position X="16.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAABCACQAAAAAAgAAAEAAEACAAkAAAAQAAA=</HashCode>
+      <FileName>Controllers\CarsController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.HomeController">
     <Position X="9.75" Y="5.25" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAIAAAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.OwnersController">
-    <Position X="10.25" Y="8" Width="1.5" />
-    <TypeIdentifier />
+    <Position X="10.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgBAACQAAAAAAACAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\OwnersController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.RolesController">
     <Position X="18.25" Y="4.25" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\RolesController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.StolenCarsController">
     <Position X="12" Y="8" Width="1.75" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAACQAAAAAAASAAEAAEACAAkAAAAAAAA=</HashCode>
+      <FileName>Controllers\StolenCarsController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.TrafficPoliceOfficersController">
-    <Position X="11.75" Y="5.5" Width="2.25" />
-    <TypeIdentifier />
+    <Position X="20" Y="11.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAGQAAAAAAACAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TrafficPoliceOfficersController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Controllers.UsersController">
-    <Position X="14" Y="8" Width="1.5" />
-    <TypeIdentifier />
+    <Position X="14" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAABAAAAAAAgAAAAAAAAAAgAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Middlewares.DbInitializerMiddleware">
     <Position X="14.25" Y="6.25" Width="2" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Middlewares\DbInitializerMiddleware.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.Middlewares.RoleInitializerMiddleware">
-    <Position X="15.75" Y="8" Width="2" />
-    <TypeIdentifier />
+    <Position X="15.75" Y="9.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Middlewares\RoleInitializerMiddleware.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.TagHelpers.PageLinkTagHelper">
-    <Position X="18" Y="8.25" Width="1.75" />
-    <TypeIdentifier />
+    <Position X="22.5" Y="11.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAIAAAAAgABAAEAAAAAAAAAAAAAIAAAACA=</HashCode>
+      <FileName>TagHelpers\PageLinkTagHelper.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.ErrorViewModel">
     <Position X="20" Y="7.25" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ErrorViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.OfficerViewModel">
-    <Position X="15.75" Y="9.5" Width="1.5" />
-    <TypeIdentifier />
+    <Position X="12" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\OfficerViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.PageViewModel">
-    <Position X="18.25" Y="6" Width="1.5" />
-    <TypeIdentifier />
+    <Position X="18.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\PageViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Account.LoginViewModel">
     <Position X="21.75" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQIAAAAgAAA=</HashCode>
+      <FileName>ViewModels\Account\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.CarBrands.CarBrandViewModel">
     <Position X="23.5" Y="0.5" Width="1.75" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAACAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CarBrands\CarBrandViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.CarBrands.SortViewModel">
     <Position X="25.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAACABAAQAAgBAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CarBrands\SortViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Cars.CarViewModel">
     <Position X="23.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AIAAAAACAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Cars\CarViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Cars.FilterViewModel">
     <Position X="21.75" Y="2.75" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAIAAgAAAAAAAAAAAAAAAAAAEgAAAA=</HashCode>
+      <FileName>ViewModels\Cars\FilterViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Cars.SortViewModel">
     <Position X="25.5" Y="3.25" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACQAAAAAAAAAAAhAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Cars\SortViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Owners.FilterViewModel">
     <Position X="21.75" Y="5.25" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAABA=</HashCode>
+      <FileName>ViewModels\Owners\FilterViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Owners.OwnerViewModel">
     <Position X="23.5" Y="4.75" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Owners\OwnerViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Owners.SortViewModel">
     <Position X="25.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAEBCAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>ViewModels\Owners\SortViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.StolenCars.FilterViewModel">
     <Position X="21.75" Y="7.25" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAIIAQAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\StolenCars\FilterViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.StolenCars.SortViewModel">
     <Position X="25.5" Y="8" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAACAAAAAAAAQBAAAAAQAAAAA=</HashCode>
+      <FileName>ViewModels\StolenCars\SortViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.StolenCars.StolenCarViewModel">
     <Position X="23.5" Y="7" Width="1.75" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAACAAAAAAAAAAEACAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\StolenCars\StolenCarViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.TrafficPoliceOfficers.SortViewModel">
     <Position X="25.5" Y="10.5" Width="1.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAEBCAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>ViewModels\TrafficPoliceOfficers\SortViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.TrafficPoliceOfficers.TrafficPoliceOfficerViewModel">
     <Position X="21.75" Y="9.75" Width="2.5" />
-    <TypeIdentifier />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>ViewModels\TrafficPoliceOfficers\TrafficPoliceOfficerViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Users.ChangePasswordViewModel">
-    <Position X="20" Y="9.25" Width="1.5" />
-    <TypeIdentifier />
+    <Position X="20" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAABAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Users\ChangePasswordViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Users.ChangeRoleViewModel">
-    <Position X="17.75" Y="10.75" Width="2" />
-    <TypeIdentifier />
+    <Position X="15.75" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAgAAAAAAAgAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Users\ChangeRoleViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Users.CreateUserViewModel">
-    <Position X="13.75" Y="10.5" Width="1.75" />
-    <TypeIdentifier />
+    <Position X="3.75" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Users\CreateUserViewModel.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="VehiclesAccounting.Web.ViewModels.Users.EditUserViewModel">
-    <Position X="11.75" Y="10.5" Width="1.75" />
+    <Position X="5.75" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\Users\EditUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VehiclesAccounting.Core.Services.SortState">
+    <Position X="20" Y="0.5" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Interface Name="VehiclesAccounting.Core.Interfaces.ICarBrandService">

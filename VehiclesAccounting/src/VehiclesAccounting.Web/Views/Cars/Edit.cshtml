@@ -11,42 +11,37 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="RegistrationNumber" class="control-label"></label>
+                <label asp-for="RegistrationNumber" class="control-label">Registration number</label>
                 <input asp-for="RegistrationNumber" class="form-control" />
                 <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BodyNumber" class="control-label"></label>
+                <label asp-for="BodyNumber" class="control-label">Body number</label>
                 <input asp-for="BodyNumber" class="form-control" />
                 <span asp-validation-for="BodyNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EngineNumber" class="control-label"></label>
+                <label asp-for="EngineNumber" class="control-label">Engine number</label>
                 <input asp-for="EngineNumber" class="form-control" />
                 <span asp-validation-for="EngineNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TechPassportNumber" class="control-label"></label>
+                <label asp-for="TechPassportNumber" class="control-label">Technical passport number</label>
                 <input asp-for="TechPassportNumber" class="form-control" />
                 <span asp-validation-for="TechPassportNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateCreating" class="control-label"></label>
+                <label asp-for="DateCreating" class="control-label">Creating date</label>
                 <input asp-for="DateCreating" class="form-control" />
                 <span asp-validation-for="DateCreating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateRegistration" class="control-label"></label>
+                <label asp-for="DateRegistration" class="control-label">Registration date</label>
                 <input asp-for="DateRegistration" class="form-control" />
                 <span asp-validation-for="DateRegistration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DateInspection" class="control-label"></label>
+                <label asp-for="DateInspection" class="control-label">Date of last inspection</label>
                 <input asp-for="DateInspection" class="form-control" />
                 <span asp-validation-for="DateInspection" class="text-danger"></span>
             </div>
@@ -61,28 +56,30 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Owner.PassportInfo" class="control-label"></label>
+                <label asp-for="Owner.PassportInfo" class="control-label">Owner's passport information</label>
                 <select asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
                 <span asp-validation-for="OwnerId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TrafficPoliceOfficerId" class="control-label"></label>
+                <label asp-for="TrafficPoliceOfficerId" class="control-label">Traffic police officer</label>
                 <select asp-for="TrafficPoliceOfficerId" class="form-control" asp-items="ViewBag.TrafficPoliceOfficerId"></select>
                 <span asp-validation-for="TrafficPoliceOfficerId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CarBrand" class="control-label"></label>
+                <label asp-for="CarBrand" class="control-label">Car brand</label>
                 <select asp-for="CarBrandId" class="form-control" asp-items="ViewBag.CarBrandId"></select>
                 <span asp-validation-for="CarBrandId" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
+<hr />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

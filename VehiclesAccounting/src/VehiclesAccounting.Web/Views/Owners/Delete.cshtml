@@ -9,16 +9,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Surname)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Patronymic)
@@ -30,31 +30,31 @@
             @Html.DisplayNameFor(model => model.Birthday)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Birthday)
+            @Model.Birthday.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PassportInfo)
+            Passport information
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PassportInfo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LicenseNumber)
+            License's number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LicenseNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LicenseStart)
+            Date of getting license
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LicenseStart)
+            @Model.LicenseStart.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LicenseEnd)
+            Date of license end
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LicenseEnd)
+            @Model.LicenseEnd.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Categories)
@@ -63,15 +63,16 @@
             @Html.DisplayFor(model => model.Categories)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ExtraInformation)
+            Extra information
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ExtraInformation)
         </dd>
     </dl>
+    <hr />
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
     </form>
 </div>

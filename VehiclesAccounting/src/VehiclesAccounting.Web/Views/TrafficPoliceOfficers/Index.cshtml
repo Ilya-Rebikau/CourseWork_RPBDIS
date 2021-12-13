@@ -2,50 +2,51 @@
 @{
     ViewData["Title"] = "Traffic police officers";
 }
-<h1>List of traffic police officers</h1>
+<h1>Here we can see all traffic police officers</h1>
 <p>
-    <a asp-action="Create">Add traffic police officer</a>
+    <a class="btn btn-primary" asp-action="Create">Add traffic police officer</a>
 </p>
-<table class="table">
-    <tr>
+<table class="table table-striped">
+    <tr class="bg-success">
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)">Name</a>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.SurnameSort)">Surname</a>
         </th>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.SurnameSort)">Surname</a>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)">Name</a>
         </th>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.PatronymicSort)">Patronymic</a>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.PatronymicSort)">Patronymic</a>
         </th>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.AgeSort)">Birthday</a>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.AgeSort)">Birthday</a>
         </th>
         <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.PostSort)">Post</a>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.PostSort)">Post</a>
         </th>
+        <th class="text-white">Operations</th>
     </tr>
     @foreach (var item in Model.TrafficPoliceOfficers)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.Surname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Surname)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Patronymic)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Birthday)
+                @item.Birthday.ToLongDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Post)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
     }

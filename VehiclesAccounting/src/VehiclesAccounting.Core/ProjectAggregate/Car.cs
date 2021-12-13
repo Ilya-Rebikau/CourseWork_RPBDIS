@@ -13,10 +13,6 @@ public class Car : IEntity
     /// </summary>
     public string RegistrationNumber { get; set; }
     /// <summary>
-    /// Gets or sets photo of car
-    /// </summary>
-    public byte[]? Photo { get; set; }
-    /// <summary>
     /// Gets or sets number of car's body
     /// </summary>
     public string BodyNumber { get; set; }

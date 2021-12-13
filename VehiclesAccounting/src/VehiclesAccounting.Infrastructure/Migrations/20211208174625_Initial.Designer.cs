@@ -9,11 +9,11 @@ using VehiclesAccounting.Infrastructure.Data;
 
 #nullable disable
 
-namespace VehiclesAccounting.Infrastructure.Data.Migrations
+namespace VehiclesAccounting.Infrastructure.Migrations
 {
     [DbContext(typeof(VehiclesContext))]
-    [Migration("20211124105915_UpdateDB")]
-    partial class UpdateDB
+    [Migration("20211208174625_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,8 +66,6 @@ namespace VehiclesAccounting.Infrastructure.Data.Migrations
                     b.Property<int?>("OwnerId")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()

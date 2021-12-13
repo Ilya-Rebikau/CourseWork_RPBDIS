@@ -1,11 +1,18 @@
 ﻿@model string
- 
+@{
+    ViewData["Title"] = "Create";
+}
 <div asp-validation-summary="All" class="text-danger"></div>
  
 <form asp-action="Create" method="post">
-    <div class="form-group">
+    <div class="form-group col-md-2">
         <label for="name">New role</label>
         <input name="name" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Add role</button>
+    <br />
+    <button type="submit" class="btn btn-success">Add role</button>
+    <hr />
+    <div>
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    </div>
 </form>

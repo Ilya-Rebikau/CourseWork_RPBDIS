@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<IdentityRole>
- 
-<h2>List of roles</h2>
-<table class="table">
+@{
+    ViewData["Title"] = "Roles";
+}
+<h2>Here we can see all roles</h2>
+<table class="table table-striped">
+    <tr class="bg-success">
+        <th class="text-white">Role</th>
+        <th class="text-white">Operations</th>
+    </tr>
     @foreach (var role in Model)
     {
         <tr>
@@ -16,4 +22,5 @@
         </tr>
     }
 </table>
-<a asp-action="Create">Add role</a>
+<hr />
+<a class="btn btn-primary" asp-action="Create">Add role</a>

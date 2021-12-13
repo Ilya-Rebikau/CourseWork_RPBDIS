@@ -1,24 +1,21 @@
 ﻿@model StolenCar
-
 @{
     ViewData["Title"] = "Create";
 }
-
 <h1>Create</h1>
-
-<h4>StolenCar</h4>
+<h4>Stolen car</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="StatementDate" class="control-label"></label>
-                <input asp-for="StatementDate" class="form-control" />
+                <label asp-for="StatementDate" class="control-label">Date of writting statement</label>
+                <input asp-for="StatementDate" type="date" class="form-control" />
                 <span asp-validation-for="StatementDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InsuranceType" class="control-label"></label>
+                <label asp-for="InsuranceType" class="control-label">Insurance type</label>
                 <input asp-for="InsuranceType" class="form-control" />
                 <span asp-validation-for="InsuranceType" class="text-danger"></span>
             </div>
@@ -27,33 +24,32 @@
                 <input asp-for="Circumstances" class="form-control" />
                 <span asp-validation-for="Circumstances" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="MarkAboutFinding" /> @Html.DisplayNameFor(model => model.MarkAboutFinding)
-                </label>
+            <div class="form-group">
+                Mark about finding  <input class="form-check-input" asp-for="MarkAboutFinding" />
             </div>
             <div class="form-group">
-                <label asp-for="TheftDate" class="control-label"></label>
-                <input asp-for="TheftDate" class="form-control" />
+                <label asp-for="TheftDate" class="control-label">Theft date</label>
+                <input asp-for="TheftDate" type="date" class="form-control" />
                 <span asp-validation-for="TheftDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InspectorId" class="control-label"></label>
+                <label asp-for="InspectorId" class="control-label">Inspector</label>
                 <select asp-for="InspectorId" class ="form-control" asp-items="ViewBag.InspectorId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Car.RegistrationNumber" class="control-label"></label>
+                <label asp-for="Car.RegistrationNumber" class="control-label">Car's registration number</label>
                 <select asp-for="CarId" class ="form-control" asp-items="ViewBag.CarId"></select>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
-
+<hr />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

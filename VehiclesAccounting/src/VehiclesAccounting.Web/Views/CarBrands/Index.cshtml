@@ -2,32 +2,29 @@
 @{
     ViewData["Title"] = "Car brands";
 }
-<h1>List of car brands</h1>
+<h1>Here we can see all car brands</h1>
 <p>
-    <a asp-action="Create">Add car brand</a>
+    <a class="btn btn-primary" asp-action="Create">Add car brand</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)">Name</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.ProducerSort)">Producer</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CountrySort)">Country</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.DateStartSort)">Start date of producing this brand</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CategorySort)">Category</a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<table class="table table-striped">
+    <tr class="bg-success">
+        <th>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)">Name</a>
+        </th>
+        <th>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.ProducerSort)">Producer</a>
+        </th>
+        <th>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CountrySort)">Country</a>
+        </th>
+        <th>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.DateStartSort)">Date of start producing</a>
+        </th>
+        <th>
+            <a class="text-white" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CategorySort)">Category</a>
+        </th>
+        <th class="text-white">Operations</th>
+    </tr>
 @foreach (var item in Model.CarBrands) {
         <tr>
             <td>
@@ -40,18 +37,17 @@
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateStart)
+                @item.DateStart.ToLongDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
-    </tbody>
 </table>
 <page-link page-model="Model.PageViewModel" page-action="Index" page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>

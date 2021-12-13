@@ -81,7 +81,7 @@ namespace VehiclesAccounting.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RegistrationNumber,Photo,BodyNumber,EngineNumber,TechPassportNumber,DateCreating,DateRegistration,DateInspection,Color,Description,OwnerId,TrafficPoliceOfficerId,CarBrandId")] Car car)
+        public async Task<IActionResult> Create([Bind("Id,RegistrationNumber,BodyNumber,EngineNumber,TechPassportNumber,DateCreating,DateRegistration,DateInspection,Color,Description,OwnerId,TrafficPoliceOfficerId,CarBrandId")] Car car)
         {
 
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace VehiclesAccounting.Web.Controllers
             IEnumerable<TrafficPoliceOfficer> trafficPoliceOfficers = await _officerService.ReadAllAsync();
             IEnumerable<CarBrand> carBrands = await _brandService.ReadAllAsync();
             IEnumerable<OfficerViewModel> officers = trafficPoliceOfficers.Select(x => new OfficerViewModel(x.Id, x.Name + " " + x.Surname + " " + x.Patronymic + " " + x.Birthday.Year));
-            ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficer.Id);
+            ViewData["TrafficPoliceOfficerId"] = new SelectList(officers, "Id", "NSPB", car.TrafficPoliceOfficerId);
             ViewData["CarBrandId"] = new SelectList(carBrands, "Id", "Name", car.CarBrandId);
             ViewData["OwnerId"] = new SelectList(owners, "Id", "PassportInfo", car.OwnerId);
             return View(car);
@@ -121,7 +121,7 @@ namespace VehiclesAccounting.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,RegistrationNumber,Photo,BodyNumber,EngineNumber,TechPassportNumber,DateCreating,DateRegistration,DateInspection,Color,Description,OwnerId,TrafficPoliceOfficerId,CarBrandId")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,RegistrationNumber,BodyNumber,EngineNumber,TechPassportNumber,DateCreating,DateRegistration,DateInspection,Color,Description,OwnerId,TrafficPoliceOfficerId,CarBrandId")] Car car)
         {
             if (id != car.Id)
             {
@@ -178,7 +178,7 @@ namespace VehiclesAccounting.Web.Controllers
             if (stolenCars.Count() == 0)
                 await _service.DeleteAsyncById(id);
             else
-                return Conflict();
+                return RedirectToAction("Error", "Home");
             return RedirectToAction(nameof(Index));
         }
         private bool CarExists(int id)

@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace VehiclesAccounting.Infrastructure.Data.Migrations.Identity
+namespace VehiclesAccounting.Infrastructure.Migrations.Identity
 {
-    public partial class Identity : Migration
+    public partial class IdentityInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

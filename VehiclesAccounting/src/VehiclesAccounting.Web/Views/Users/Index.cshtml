@@ -1,12 +1,16 @@
 ﻿@model IEnumerable<User>
 @{
-    ViewBag.Title = "List of users";
+    ViewBag.Title = "Users";
 }
- 
-<a asp-action="Create">Add user</a>
- 
-<table class="table">
-    <tr><th>UserName</th><th></th></tr>
+<h2>Here we can all users in system</h2>
+<a class="btn btn-primary" asp-action="Create">Add user</a>
+<br />
+<br />
+<table class="table table-striped">
+    <tr class="bg-success">
+        <th class="text-white">Username</th>
+        <th class="text-white">Operations</th>
+    </tr>
     @foreach (var user in Model)
     {
         <tr>

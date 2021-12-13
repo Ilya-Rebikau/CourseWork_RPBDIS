@@ -38,16 +38,16 @@ public class Startup
     {
         string connection = Configuration.GetConnectionString("DefaultConnection");
         services.AddDbContext<VehiclesContext>(options =>
-            options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
+            options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure")));
         services.AddDbContext<IdentityContext>(options =>
-            options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure.Data")));
+            options.UseSqlServer(connection, b => b.MigrationsAssembly("VehiclesAccounting.Infrastructure")));
         services.AddControllersWithViews(options =>
             options.CacheProfiles.Add("Caching",
             new CacheProfile()
             {
                 NoStore = true,
                 Location = ResponseCacheLocation.None,
-                //Duration = 300
+                Duration = 300
             }));
         services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
             .AddEntityFrameworkStores<IdentityContext>();

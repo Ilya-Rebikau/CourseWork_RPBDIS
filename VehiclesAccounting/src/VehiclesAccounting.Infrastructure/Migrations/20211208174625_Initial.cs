@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace VehiclesAccounting.Infrastructure.Data.Migrations
+namespace VehiclesAccounting.Infrastructure.Migrations
 {
-    public partial class UpdateDB : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,7 +75,6 @@ namespace VehiclesAccounting.Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RegistrationNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     BodyNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     EngineNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     TechPassportNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),

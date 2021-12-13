@@ -8,7 +8,7 @@ using VehiclesAccounting.Infrastructure.Data;
 
 #nullable disable
 
-namespace VehiclesAccounting.Web.Migrations
+namespace VehiclesAccounting.Infrastructure.Migrations
 {
     [DbContext(typeof(VehiclesContext))]
     partial class VehiclesContextModelSnapshot : ModelSnapshot
@@ -63,9 +63,6 @@ namespace VehiclesAccounting.Web.Migrations
 
                     b.Property<int?>("OwnerId")
                         .HasColumnType("int");
-
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()

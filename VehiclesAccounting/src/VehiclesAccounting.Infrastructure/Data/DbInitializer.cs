@@ -62,7 +62,7 @@ public static class DbInitializer
 
         if (!db.TrafficPoliceOfficers.Any())
         {
-            int officersNumber = 500;
+            int officersNumber = 5000;
             string post;
             string[] officerPosts = { "Рядовой", "Младший сержант", "Сержант", "Старший сержант", "Старшина", "Прапорщик", "Старший прапорщик",
                     "Младший лейтенант", "Лейтенант", "Старший лейтенант", "Капитан", "Майор", "Подполковник", "Полковник", "Генерал-Майор",
@@ -72,7 +72,7 @@ public static class DbInitializer
             {
                 CreateMale();
                 post = officerPosts[rand.Next(countPosts)];
-                db.TrafficPoliceOfficers.Add(new TrafficPoliceOfficer { Name = name, Surname = surname, Patronymic = patronymic, Post = post });
+                db.TrafficPoliceOfficers.Add(new TrafficPoliceOfficer { Name = name, Surname = surname, Patronymic = patronymic, Birthday = RandomDate(1960, 2000), Post = post });
                 CreateFemale();
                 post = officerPosts[rand.Next(countPosts)];
                 db.TrafficPoliceOfficers.Add(new TrafficPoliceOfficer { Name = name, Surname = surname, Patronymic = patronymic, Birthday = RandomDate(1960, 2000), Post = post });
@@ -101,7 +101,7 @@ public static class DbInitializer
                 return alphabet[rand.Next(1, countAlphabet)] + alphabet[rand.Next(1, countAlphabet)] + rand.Next(0, 10).ToString()
                     + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString() + rand.Next(0, 10).ToString();
             }
-            int ownersNumber = 500;
+            int ownersNumber = 5000;
             for (int id = 1; id <= ownersNumber / 2; id++)
             {
                 CreateMale();
@@ -138,7 +138,7 @@ public static class DbInitializer
         }
         if (!db.CarBrands.Any())
         {
-            int brandsNumber = 100;
+            int brandsNumber = 5000;
             string category;
             for (int id = 1; id <= brandsNumber; id++)
             {
@@ -160,7 +160,7 @@ public static class DbInitializer
         }
         if (!db.Cars.Any())
         {
-            int carsNumber = 1000;
+            int carsNumber = 20000;
             string[] colors = { "Чёрный", "Белый", "Зелёный", "Жёлтый", "Красный", "Синий", "Фиолетовый", "Серый", "Серебристый",
                 "Золотой", "Аква", "Голубой" };
             int countColors = colors.GetLength(0);
@@ -216,7 +216,7 @@ public static class DbInitializer
         }
         if (!db.StolenCars.Any())
         {
-            int stolenCarsNumber = 50;
+            int stolenCarsNumber = 1000;
             bool GetRandomStatement()
             {
                 bool statement;

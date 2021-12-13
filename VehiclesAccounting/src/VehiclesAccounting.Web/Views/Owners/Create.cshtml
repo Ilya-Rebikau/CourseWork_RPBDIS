@@ -6,7 +6,7 @@
 <h4>Owner</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -26,27 +26,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="Birthday" class="control-label"></label>
-                <input asp-for="Birthday" class="form-control" />
+                <input asp-for="Birthday" type="date" class="form-control" />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PassportInfo" class="control-label"></label>
+                <label asp-for="PassportInfo" class="control-label">Passport information</label>
                 <input asp-for="PassportInfo" class="form-control" />
                 <span asp-validation-for="PassportInfo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LicenseNumber" class="control-label"></label>
+                <label asp-for="LicenseNumber" class="control-label">License's number</label>
                 <input asp-for="LicenseNumber" class="form-control" />
                 <span asp-validation-for="LicenseNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LicenseStart" class="control-label"></label>
-                <input asp-for="LicenseStart" class="form-control" />
+                <label asp-for="LicenseStart" class="control-label">Date of getting license</label>
+                <input asp-for="LicenseStart" type="date" class="form-control" />
                 <span asp-validation-for="LicenseStart" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LicenseEnd" class="control-label"></label>
-                <input asp-for="LicenseEnd" class="form-control" />
+                <label asp-for="LicenseEnd" class="control-label">Date of license end</label>
+                <input asp-for="LicenseEnd" type="date" class="form-control" />
                 <span asp-validation-for="LicenseEnd" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -55,18 +55,20 @@
                 <span asp-validation-for="Categories" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ExtraInformation" class="control-label"></label>
+                <label asp-for="ExtraInformation" class="control-label">Extra information</label>
                 <input asp-for="ExtraInformation" class="form-control" />
                 <span asp-validation-for="ExtraInformation" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
+<hr />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

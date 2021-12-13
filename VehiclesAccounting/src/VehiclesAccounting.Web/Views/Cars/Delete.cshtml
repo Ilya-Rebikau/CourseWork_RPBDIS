@@ -9,52 +9,46 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegistrationNumber)
+            Registration number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RegistrationNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BodyNumber)
+            Body Number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BodyNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EngineNumber)
+            Engine Number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.EngineNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TechPassportNumber)
+            Technical passport number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TechPassportNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateCreating)
+            Creating date
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateCreating)
+            @Model.DateCreating.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateRegistration)
+            Registration date
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateRegistration)
+            @Model.DateRegistration.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateInspection)
+            Date of last inspection
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateInspection)
+            @Model.DateInspection.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Color)
@@ -72,24 +66,25 @@
             @Html.DisplayNameFor(model => model.Owner)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Owner.Surname)
+            @Model.Owner.Surname @Model.Owner.Name @Model.Owner.Patronymic, @Model.Owner.Birthday.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrafficPoliceOfficer)
+            Traffic police officer
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrafficPoliceOfficer.Surname)
+            @Model.TrafficPoliceOfficer.Surname @Model.TrafficPoliceOfficer.Name @Model.TrafficPoliceOfficer.Patronymic, @Model.TrafficPoliceOfficer.Birthday.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarBrand)
+            Car brand
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CarBrand.Name)
         </dd>
     </dl>
+    <hr />
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
     </form>
 </div>

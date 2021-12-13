@@ -9,11 +9,11 @@ using VehiclesAccounting.Infrastructure.Data;
 
 #nullable disable
 
-namespace VehiclesAccounting.Infrastructure.Data.Migrations.Identity
+namespace VehiclesAccounting.Infrastructure.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20211122192242_Identity")]
-    partial class Identity
+    [Migration("20211208174658_IdentityInitial")]
+    partial class IdentityInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

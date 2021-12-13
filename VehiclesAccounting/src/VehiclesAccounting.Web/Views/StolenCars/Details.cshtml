@@ -7,17 +7,17 @@
 <h1>Details</h1>
 
 <div>
-    <h4>StolenCar</h4>
+    <h4>Stolen car</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StatementDate)
+            Date of writting statement
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StatementDate)
+            @Model.StatementDate.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InsuranceType)
+            Insurance type
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.InsuranceType)
@@ -29,32 +29,33 @@
             @Html.DisplayFor(model => model.Circumstances)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MarkAboutFinding)
+            Mark about finding
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.MarkAboutFinding)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TheftDate)
+            Theft date
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TheftDate)
+            @Model.TheftDate.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Inspector)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inspector.Surname)
+            @Model.Inspector.Surname @Model.Inspector.Name @Model.Inspector.Patronymic, @Model.Inspector.Birthday.ToLongDateString()
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Car)
+            Car's registration number
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Car.RegistrationNumber)
         </dd>
     </dl>
 </div>
+<hr />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>
