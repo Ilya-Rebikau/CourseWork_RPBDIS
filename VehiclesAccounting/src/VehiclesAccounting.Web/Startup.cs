@@ -45,8 +45,7 @@ public class Startup
             options.CacheProfiles.Add("Caching",
             new CacheProfile()
             {
-                NoStore = true,
-                Location = ResponseCacheLocation.None,
+                Location = ResponseCacheLocation.Any,
                 Duration = 300
             }));
         services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
